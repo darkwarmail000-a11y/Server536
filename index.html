@@ -3,281 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server #536 | Dark War Survival Command Hub</title>
+    <title>STATE 536 · Dark War Survival</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-dark: #0a0c0e;
+            --bg-card: #101316;
+            --text-cream: #ebe5d5;
+            --text-muted: #9ca3af;
+            --accent-gold: #c8a96e;
+            --border-subtle: rgba(235, 229, 213, 0.14);
+        }
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background-color: #090a0d;
-            color: #e2e8f0;
-            background-image: 
-                radial-gradient(circle at 15% 20%, rgba(220, 38, 38, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 75%, rgba(245, 158, 11, 0.06) 0%, transparent 40%);
+            background-color: var(--bg-dark);
+            color: var(--text-cream);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.01em;
         }
-        h1, h2, h3, .font-tech {
-            font-family: 'Orbitron', sans-serif;
+        h1, h2, h3, .font-display {
+            font-family: 'Barlow Condensed', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
-        .tactical-card {
-            background: rgba(17, 20, 27, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+        .editorial-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
         }
-        .tactical-card:hover {
-            border-color: rgba(239, 68, 68, 0.5);
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
-            transform: translateY(-2px);
+        .gold-btn {
+            border: 1px solid rgba(200, 169, 110, 0.45);
+            background: rgba(200, 169, 110, 0.06);
+            color: var(--text-cream);
+            transition: all 0.25s ease;
         }
-        .hazard-stripe {
-            background: repeating-linear-gradient(
-                -45deg,
-                #18181b,
-                #18181b 10px,
-                #27272a 10px,
-                #27272a 20px
-            );
+        .gold-btn:hover {
+            border-color: var(--accent-gold);
+            background: rgba(200, 169, 110, 0.16);
+        }
+        .tab-active {
+            border-color: var(--accent-gold) !important;
+            color: var(--accent-gold) !important;
+            background: rgba(200, 169, 110, 0.08);
+        }
+        .hero-bg {
+            background: 
+                linear-gradient(to bottom, rgba(10, 12, 14, 0.55) 0%, rgba(10, 12, 14, 0.85) 75%, #0a0c0e 100%),
+                radial-gradient(circle at 65% 30%, rgba(200, 169, 110, 0.22), transparent 55%),
+                radial-gradient(circle at 25% 75%, rgba(126, 34, 206, 0.18), transparent 50%),
+                #121015;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-red-600 selection:text-white">
+<body class="antialiased selection:bg-[#c8a96e] selection:text-black">
 
-    <!-- Top Navigation -->
-    <nav class="sticky top-0 z-50 bg-[#090a0d]/90 backdrop-blur-md border-b border-zinc-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center gap-3">
-                    <div class="w-9 h-9 rounded bg-red-600 flex items-center justify-center font-tech font-black text-white text-lg shadow-lg shadow-red-600/30">
-                        536
-                    </div>
-                    <div>
-                        <span class="font-tech font-bold text-white tracking-wider text-lg block leading-none">SERVER #536</span>
-                        <span class="text-xs text-amber-500 font-semibold tracking-widest uppercase">Dark War Survival</span>
-                    </div>
-                </div>
-                <div class="hidden md:flex space-x-6 text-sm font-semibold tracking-wider uppercase">
-                    <a href="#rules" class="text-zinc-300 hover:text-red-500 transition">NAP Rules</a>
-                    <a href="#alliances" class="text-zinc-300 hover:text-red-500 transition">Alliances</a>
-                    <a href="#capitol" class="text-zinc-300 hover:text-red-500 transition">Capitol Rotation</a>
-                    <a href="#community" class="text-amber-400 hover:text-amber-300 transition flex items-center gap-1">
-                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Community
-                    </a>
-                </div>
-                <div class="flex items-center gap-3 bg-zinc-900 border border-zinc-800 px-3 py-1.5 rounded text-xs">
-                    <span class="text-zinc-400">UTC Reset:</span>
-                    <span id="utc-clock" class="font-tech font-bold text-amber-400">00:00:00</span>
-                </div>
+    <!-- Top Sticky Navigation -->
+    <nav class="sticky top-0 z-40 bg-[#0a0c0e]/95 backdrop-blur-md border-b border-[#ebe5d5]/10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2.5">
+                <svg class="w-6 h-6 text-[#c8a96e]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4v5c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V7l8-4z"/>
+                </svg>
+                <span class="font-display text-2xl font-bold tracking-wider text-[#ebe5d5]">STATE 536</span>
+            </a>
+            <div class="flex items-center gap-4 sm:gap-7 text-xs sm:text-sm font-display tracking-widest text-[#ebe5d5]/85">
+                <a href="#alliance-map" class="hover:text-[#c8a96e] transition">ALLIANCE MAP</a>
+                <a href="#apply" class="hover:text-[#c8a96e] transition">APPLY</a>
+                <a href="#community" class="hover:text-[#c8a96e] transition">COMMUNITY</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Banner -->
-    <header class="relative py-16 sm:py-24 border-b border-zinc-800/80 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-bold tracking-widest uppercase mb-6">
-                <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-                United State Command • SVS Ready
+    <!-- Hero Section -->
+    <header class="hero-bg border-b border-[#ebe5d5]/10">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
+            <div class="flex items-center gap-2 text-xs font-display tracking-[0.22em] text-[#c8a96e] mb-4">
+                <span>DARK WAR SURVIVAL</span>
+                <span>•</span>
+                <span>STATE 536</span>
             </div>
-            <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase mb-4">
-                WELCOME TO <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-500">SERVER #536</span>
+            <h1 class="text-5xl sm:text-7xl font-extrabold leading-[0.95] text-[#ebe5d5] max-w-2xl mb-6">
+                A STRONGER TOMORROW.<br>BUILT TOGETHER.
             </h1>
-            <p class="max-w-2xl mx-auto text-zinc-400 text-lg sm:text-xl mb-8">
-                Official diplomatic portal, NAP guidelines, Capitol rotation schedule, and central communication hub for all survivors of Server 536.
+            <p class="text-[#ebe5d5]/80 text-base sm:text-lg max-w-xl leading-relaxed mb-2">
+                Competitive alliances. Active leadership. State-wide cooperation.
             </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#community" class="px-6 py-3 rounded bg-red-600 hover:bg-red-700 text-white font-tech font-bold text-sm tracking-wider uppercase shadow-lg shadow-red-600/25 transition">
-                    Join Server Discord & Chat
+            <p class="text-[#ebe5d5]/70 text-sm sm:text-base max-w-xl mb-10">
+                Find the alliance that fits the way you play.
+            </p>
+            <div class="flex flex-wrap items-center justify-between gap-4">
+                <a href="#alliance-map" class="gold-btn px-7 py-3.5 font-display text-sm tracking-[0.18em] inline-flex items-center gap-3">
+                    <span>MEET OUR ALLIANCES</span>
+                    <span>↓</span>
                 </a>
-                <a href="#rules" class="px-6 py-3 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-200 font-tech font-bold text-sm tracking-wider uppercase transition">
-                    Read Server Laws
-                </a>
+                <div class="w-12 h-12 rounded-full border border-[#ebe5d5]/20 flex items-center justify-center font-display text-sm text-[#c8a96e]">
+                    536
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Quick Stats Bar -->
-    <div class="hazard-stripe border-b border-zinc-800 py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-            <div class="bg-zinc-950/80 p-3 rounded border border-zinc-800">
-                <div class="text-xs text-zinc-400 uppercase tracking-wider">Treaty Status</div>
-                <div class="font-tech font-bold text-green-400 text-lg">NAP-ALL ACTIVE</div>
-            </div>
-            <div class="bg-zinc-950/80 p-3 rounded border border-zinc-800">
-                <div class="text-xs text-zinc-400 uppercase tracking-wider">Current President</div>
-                <div class="font-tech font-bold text-amber-400 text-lg">[FROM] Fbazz</div>
-            </div>
-            <div class="bg-zinc-950/80 p-3 rounded border border-zinc-800">
-                <div class="text-xs text-zinc-400 uppercase tracking-wider">SVS Status</div>
-                <div class="font-tech font-bold text-red-400 text-lg">PREP PHASE</div>
-            </div>
-            <div class="bg-zinc-950/80 p-3 rounded border border-zinc-800">
-                <div class="text-xs text-zinc-400 uppercase tracking-wider">Kill Event (KE)</div>
-                <div class="font-tech font-bold text-zinc-200 text-lg">TILES ONLY</div>
-            </div>
-        </div>
-    </div>
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-16">
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-20">
-
-        <!-- Section 1: Server Rules / NAP -->
-        <section id="rules">
-            <div class="flex items-center justify-between mb-8">
+        <!-- Section 1: 3 Pillars -->
+        <section class="editorial-box divide-y divide-[#ebe5d5]/10">
+            <div class="p-6 sm:p-8 flex items-start gap-5">
+                <div class="w-12 h-12 rounded-full border border-[#ebe5d5]/15 flex items-center justify-center shrink-0 text-[#c8a96e]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
                 <div>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white uppercase tracking-wide">Server #536 Laws & NAP Treaty</h2>
-                    <p class="text-zinc-400 text-sm mt-1">Strict adherence required to maintain server strength for State vs State (SvS).</p>
+                    <h2 class="text-2xl font-bold text-[#ebe5d5] mb-1">REAL PEOPLE.</h2>
+                    <p class="text-sm text-gray-400">A community of players building something lasting.</p>
                 </div>
             </div>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="tactical-card p-6 rounded-lg">
-                    <div class="text-red-500 font-tech font-bold text-sm mb-2">01 // NON-AGGRESSION PACT</div>
-                    <h3 class="text-xl font-bold text-white mb-3">NAP-ALL Protection</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed">
-                        Zero city attacks, scouting, or tile hitting against Top ALL alliances and their official academies. Violations require 2x resource compensation.
-                    </p>
+            <div class="p-6 sm:p-8 flex items-start gap-5">
+                <div class="w-12 h-12 rounded-full border border-[#ebe5d5]/15 flex items-center justify-center shrink-0 text-[#c8a96e]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
                 </div>
-                <div class="tactical-card p-6 rounded-lg">
-                    <div class="text-amber-500 font-tech font-bold text-sm mb-2">02 // KILL EVENT PROTOCOL</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Weekend KE Rules</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed">
-                        During Kill Events, attacks are strictly limited to unshielded cities outside NAP-10 or designated PvP zones. Gathering tiles are off-limits server-wide.
-                    </p>
-                </div>
-                <div class="tactical-card p-6 rounded-lg">
-                    <div class="text-blue-400 font-tech font-bold text-sm mb-2">03 // SVS UNITY</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Server-Wide Mobilization</h3>
-                    <p class="text-zinc-400 text-sm leading-relaxed">
-                        All internal conflicts freeze 24 hours prior to SvS. President buffs are rotated equally among top contributing alliances during SvS Prep.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 2: Alliance Directory -->
-        <section id="alliances">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white uppercase tracking-wide">Alliance Directory</h2>
-                    <p class="text-zinc-400 text-sm mt-1">Verified alliances of Server #536. Search by tag, name, or R5 leader.</p>
-                </div>
-                <div class="flex gap-2">
-                    <input type="text" id="alliance-search" placeholder="Search [TAG] or R5..." 
-                        class="bg-zinc-900 border border-zinc-700 text-white text-sm rounded px-4 py-2 focus:outline-none focus:border-red-500">
-                    <select id="alliance-filter" class="bg-zinc-900 border border-zinc-700 text-white text-sm rounded px-3 py-2 focus:outline-none focus:border-red-500">
-                        <option value="ALL">All Status</option>
-                        <option value="NAP-ALL">NAP-ALL</option>
-                        <option value="ACADEMY">Academy</option>
-                    </select>
+                    <h2 class="text-2xl font-bold text-[#ebe5d5] mb-1">CLEAR PLANS.</h2>
+                    <p class="text-sm text-gray-400">Shared direction and coordination across the state.</p>
                 </div>
             </div>
-
-            <div id="alliance-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- Cards injected via JS -->
+            <div class="p-6 sm:p-8 flex items-start gap-5">
+                <div class="w-12 h-12 rounded-full border border-[#ebe5d5]/15 flex items-center justify-center shrink-0 text-[#c8a96e]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-[#ebe5d5] mb-1">SHARED PROGRESS.</h2>
+                    <p class="text-sm text-gray-400">We grow together. We win together.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Section 3: Capitol Rotation -->
-        <section id="capitol">
-            <h2 class="text-2xl sm:text-3xl font-bold text-white uppercase tracking-wide mb-2">Capitol & Presidency Rotation</h2>
-            <p class="text-zinc-400 text-sm mb-6">Scheduled leadership rotation based on SvS contribution and alliance activity.</p>
-            
-            <div class="overflow-x-auto tactical-card rounded-lg">
-                <table class="w-full text-left border-collapse">
-                    <thead>
-                        <tr class="border-b border-zinc-800 bg-zinc-900/80 text-xs font-tech uppercase text-zinc-400">
-                            <th class="p-4">Cycle</th>
-                            <th class="p-4">Alliance</th>
-                            <th class="p-4">Designated President</th>
-                            <th class="p-4">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-zinc-800/70 text-sm">
-                        <tr class="bg-amber-500/5">
-                            <td class="p-4 font-tech text-amber-400 font-bold">Cycle #04</td>
-                            <td class="p-4 font-bold text-white">[FROM] GOD</td>
-                            <td class="p-4 text-zinc-300">Fbazz_536</td>
-                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-bold bg-green-500/20 text-green-400 border border-green-500/30">ACTIVE RULER</span></td>
-                        </tr>
-                        <tr>
-                            <td class="p-4 font-tech text-zinc-400">Cycle #05</td>
-                            <td class="p-4 font-bold text-white">[DRK] Dark Legion</td>
-                            <td class="p-4 text-zinc-300">ShadowKazi</td>
-                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">NEXT IN LINE</span></td>
-                        </tr>
-                        <tr>
-                            <td class="p-4 font-tech text-zinc-400">Cycle #06</td>
-                            <td class="p-4 font-bold text-white">[VNM] Venom Squad</td>
-                            <td class="p-4 text-zinc-300">ViperQueen</td>
-                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-bold bg-zinc-800 text-zinc-400">SCHEDULED</span></td>
-                        </tr>
-                        <tr>
-                            <td class="p-4 font-tech text-zinc-400">Cycle #07</td>
-                            <td class="p-4 font-bold text-white">[TITN] Iron Titans</td>
-                            <td class="p-4 text-zinc-300">GoliathX</td>
-                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-bold bg-zinc-800 text-zinc-400">SCHEDULED</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+        <!-- Section 2: Alliance Territories Map -->
+        <section id="alliance-map" class="editorial-box p-6 sm:p-10 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5] mb-2">MEET YOUR NEXT ALLIANCE.</h2>
+            <p class="text-sm text-gray-400 max-w-lg mx-auto mb-8">
+                Get to know the teams of State 536. Explore their profiles and find the alliance that feels like home.
+            </p>
 
-        <!-- Section 4: Community Hub (#community) -->
-        <section id="community" class="pt-6">
-            <div class="tactical-card rounded-xl p-8 border-red-500/30 relative overflow-hidden">
-                <div class="max-w-3xl">
-                    <span class="text-xs font-tech font-bold tracking-widest uppercase text-red-500">Central Comms // #Community</span>
-                    <h2 class="text-3xl font-black text-white uppercase mt-2 mb-4">Server #536 Community Hub</h2>
-                    <p class="text-zinc-300 mb-8">
-                        Connect with R4/R5 council members, coordinate SvS rallies, request President buffs, and stay updated with live server announcements.
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Discord Card -->
-                    <div class="bg-zinc-950/90 border border-zinc-800 p-6 rounded-lg flex flex-col justify-between">
-                        <div>
-                            <div class="w-10 h-10 rounded bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400 font-bold mb-4">
-                                DC
-                            </div>
-                            <h3 class="text-lg font-bold text-white mb-2">Official Server Discord</h3>
-                            <p class="text-zinc-400 text-sm mb-6">
-                                Main voice channels for Capitol Clash, SvS war rooms, strategy guides, and diplomatic tickets.
-                            </p>
-                        </div>
-                        <a href="https://discord.com" target="_blank" class="w-full text-center py-2.5 rounded bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm transition">
-                            Join Discord Server
-                        </a>
+            <!-- Illustrative Circular Capitol Map -->
+            <div class="relative max-w-xl mx-auto rounded border border-[#ebe5d5]/15 overflow-hidden bg-[#0b0d10] p-6 sm:p-10 mb-6"
+                 style="background-image: radial-gradient(circle at 25% 30%, rgba(217, 119, 6, 0.22), transparent 45%), radial-gradient(circle at 75% 30%, rgba(220, 38, 38, 0.22), transparent 45%), radial-gradient(circle at 50% 80%, rgba(147, 51, 234, 0.24), transparent 50%);">
+                
+                <!-- Decorative Capitol Ring -->
+                <div class="w-44 h-44 sm:w-56 sm:h-56 mx-auto rounded-full border border-dashed border-[#c8a96e]/30 flex items-center justify-center relative">
+                    <div class="w-20 h-20 rounded-full border border-[#c8a96e]/50 bg-[#0a0c0e]/90 flex flex-col items-center justify-center">
+                        <span class="font-display text-xs text-[#c8a96e] tracking-widest">CAPITOL</span>
+                        <span class="font-display text-lg font-bold">536</span>
                     </div>
 
-                    <!-- WhatsApp / Telegram Council -->
-                    <div class="bg-zinc-950/90 border border-zinc-800 p-6 rounded-lg flex flex-col justify-between">
-                        <div>
-                            <div class="w-10 h-10 rounded bg-emerald-600/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-bold mb-4">
-                                WA
-                            </div>
-                            <h3 class="text-lg font-bold text-white mb-2">R4 / R5 Leadership Chat</h3>
-                            <p class="text-zinc-400 text-sm mb-6">
-                                Direct emergency hotline for alliance leaders to resolve border disputes and coordinate shield timings.
-                            </p>
-                        </div>
-                        <a href="#community" onclick="alert('Contact your Alliance R5 for the private WhatsApp/Telegram invite link!')" class="w-full text-center py-2.5 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm transition">
-                            Request Council Access
-                        </a>
-                    </div>
+                    <!-- Alliance Territory Badges (Click to Open Info/Apply) -->
+                    <button onclick="openAllianceModal('APEX')" class="absolute -top-4 -left-8 sm:-left-14 px-4 py-2 bg-[#0a0c0e]/95 border border-amber-500/60 text-amber-400 font-display text-lg tracking-wider hover:scale-105 transition">
+                        APEX ↗
+                    </button>
+                    <button onclick="openAllianceModal('DRK')" class="absolute -top-4 -right-8 sm:-right-14 px-4 py-2 bg-[#0a0c0e]/95 border border-red-500/60 text-red-400 font-display text-lg tracking-wider hover:scale-105 transition">
+                        DRK ↗
+                    </button>
+                    <button onclick="openAllianceModal('VNM')" class="absolute -bottom-5 left-1/2 -translate-x-1/2 px-4 py-2 bg-[#0a0c0e]/95 border border-purple-500/60 text-purple-400 font-display text-lg tracking-wider hover:scale-105 transition">
+                        VNM ↗
+                    </button>
+                </div>
+            </div>
 
-                    <!-- Buff Request / Feedback -->
-                    <div class="bg-zinc-950/90 border border-zinc-800 p-6 rounded-lg flex flex-col justify-between">
-                        <div>
-                            <div class="w-10 h-10 rounded bg-amber-600/20 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold mb-4">
-                                HQ
-                            </div>
-                            <h3 class="text-lg font-bold text-white mb-2">Minister Buff Queue</h3>
-                            <p class="text-zinc-400 text-sm mb-6">
-                                Need Construction, Research, or Training Minister titles? Message the Capitol First Lady in-game.
-                            </p>
-                        </div>
-                        <button onclick="copyBuffFormat()" id="copy-btn" class="w-full text-center py-2.5 rounded bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm transition">
-                            Copy Buff Request Format
-                        </button>
+            <p class="text-xs text-gray-400 mb-1">Select an alliance to enter its territory.</p>
+            <p class="text-[11px] font-display tracking-[0.2em] text-gray-500 mb-6">ALLIANCE TERRITORIES · ILLUSTRATIVE MAP</p>
+
+            <button onclick="openAllianceModal('OTHER')" class="gold-btn px-6 py-3 font-display text-sm tracking-[0.18em] inline-flex items-center gap-2">
+                <span>OTHER ALLIANCES</span>
+                <span>→</span>
+            </button>
+        </section>
+
+        <!-- Section 3: Start Your Application -->
+        <section id="apply" class="editorial-box p-6 sm:p-10 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5] mb-2">START YOUR APPLICATION</h2>
+            <p class="text-sm text-gray-400 mb-8">Choose an alliance below to open your application form.</p>
+
+            <div class="grid grid-cols-4 border border-[#ebe5d5]/15 divide-x divide-[#ebe5d5]/15 max-w-xl mx-auto">
+                <button onclick="openApplyForm('APEX')" class="py-4 font-display text-lg text-amber-400 hover:bg-amber-500/10 transition">APEX</button>
+                <button onclick="openApplyForm('DRK')" class="py-4 font-display text-lg text-red-400 hover:bg-red-500/10 transition">DRK</button>
+                <button onclick="openApplyForm('VNM')" class="py-4 font-display text-lg text-purple-400 hover:bg-purple-500/10 transition">VNM</button>
+                <button onclick="openApplyForm('Other')" class="py-4 font-display text-lg text-[#ebe5d5] hover:bg-white/5 transition">Other</button>
+            </div>
+        </section>
+
+        <!-- Section 4: Different Alliances. One State. -->
+        <section class="editorial-box p-8 sm:p-12 relative overflow-hidden"
+                 style="background-image: linear-gradient(to right, rgba(16,19,22,0.96) 45%, rgba(16,19,22,0.65)), radial-gradient(circle at 85% 50%, rgba(200, 169, 110, 0.2), transparent 60%);">
+            <h2 class="text-3xl sm:text-5xl font-bold text-[#ebe5d5] leading-tight mb-4">
+                DIFFERENT ALLIANCES.<br>ONE STATE.
+            </h2>
+            <p class="text-sm sm:text-base text-gray-300 max-w-lg leading-relaxed">
+                We build our own teams, but move forward together. Shared knowledge, mutual respect and support across alliance lines.
+            </p>
+        </section>
+
+        <!-- Section 5: Your Path To State 536 -->
+        <section class="editorial-box p-6 sm:p-10 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5] mb-10">YOUR PATH TO STATE 536</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center justify-center gap-3 mb-3 text-[#c8a96e]">
+                        <span class="w-8 h-8 rounded-full border border-[#c8a96e]/50 flex items-center justify-center font-display text-sm">1</span>
+                        <span class="text-xl">📋</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">APPLY</h3>
+                    <p class="text-xs text-gray-400">Submit your application with key information.</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-center gap-3 mb-3 text-[#c8a96e]">
+                        <span class="w-8 h-8 rounded-full border border-[#c8a96e]/50 flex items-center justify-center font-display text-sm">2</span>
+                        <span class="text-xl">✅</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">REVIEW</h3>
+                    <p class="text-xs text-gray-400">Alliance leaders review your application.</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-center gap-3 mb-3 text-[#c8a96e]">
+                        <span class="w-8 h-8 rounded-full border border-[#c8a96e]/50 flex items-center justify-center font-display text-sm">3</span>
+                        <span class="text-xl">🤝</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">CONNECT</h3>
+                    <p class="text-xs text-gray-400">Connect with the team and get to know each other.</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-center gap-3 mb-3 text-[#c8a96e]">
+                        <span class="w-8 h-8 rounded-full border border-[#c8a96e]/50 flex items-center justify-center font-display text-sm">4</span>
+                        <span class="text-xl">🛡️</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">PREPARE</h3>
+                    <p class="text-xs text-gray-400">Finalize your move and prepare for battle.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Community & Social Channels (#community) -->
+        <section id="community" class="editorial-box p-6 sm:p-10">
+            <div class="text-center mb-8">
+                <p class="text-xs font-display tracking-[0.22em] text-[#c8a96e] mb-2">SOCIAL · CONNECT WITH THE PLAYERS</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5]">LIFE INSIDE THE ALLIANCES</h2>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="flex flex-wrap justify-center border border-[#ebe5d5]/15 divide-x divide-[#ebe5d5]/15 max-w-lg mx-auto mb-8">
+                <button onclick="filterChannels('ALL', this)" class="channel-tab tab-active flex-1 py-2.5 px-3 font-display text-sm">ALL</button>
+                <button onclick="filterChannels('APEX', this)" class="channel-tab flex-1 py-2.5 px-3 font-display text-sm text-gray-400">APEX</button>
+                <button onclick="filterChannels('DRK', this)" class="channel-tab flex-1 py-2.5 px-3 font-display text-sm text-gray-400">DRK</button>
+                <button onclick="filterChannels('VNM', this)" class="channel-tab flex-1 py-2.5 px-3 font-display text-sm text-gray-400">VNM</button>
+                <button onclick="filterChannels('Other', this)" class="channel-tab flex-1 py-2.5 px-3 font-display text-sm text-gray-400">Other</button>
+            </div>
+
+            <div id="channels-grid" class="grid sm:grid-cols-2 gap-6">
+                <!-- Injected via JS -->
+            </div>
+        </section>
+
+        <!-- Section 7: Hall of Fame -->
+        <section class="editorial-box p-6 sm:p-10 text-center">
+            <p class="text-xs font-display tracking-[0.22em] text-[#c8a96e] mb-2">🏆 THE MOMENTS THAT MAKE US</p>
+            <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5] mb-2">STATE 536 HALL OF FAME</h2>
+            <p class="text-xs sm:text-sm text-gray-400 max-w-lg mx-auto mb-8">
+                Different banners. Shared memories. The wins, the laughs, and the "you had to be there" moments from our alliances.
+            </p>
+
+            <!-- Leaderboard Podium Card -->
+            <div class="max-w-xl mx-auto border border-[#ebe5d5]/15 bg-[#0c1118] p-6 mb-6 text-left">
+                <div class="grid grid-cols-3 gap-3 text-center mb-6 items-end">
+                    <div class="border border-blue-500/20 bg-blue-950/20 p-3 rounded">
+                        <div class="text-[10px] text-gray-400">#2 [DRK] Shadow</div>
+                        <div class="font-display text-lg sm:text-xl font-bold text-white">18.45G</div>
+                    </div>
+                    <div class="border border-[#c8a96e]/50 bg-[#c8a96e]/10 p-4 rounded">
+                        <div class="text-xs text-[#c8a96e] font-bold">👑 #1 [APEX] Warlord</div>
+                        <div class="font-display text-xl sm:text-2xl font-extrabold text-white">19.80G</div>
+                    </div>
+                    <div class="border border-blue-500/20 bg-blue-950/20 p-3 rounded">
+                        <div class="text-[10px] text-gray-400">#3 [VNM] Viper</div>
+                        <div class="font-display text-lg sm:text-xl font-bold text-white">17.90G</div>
+                    </div>
+                </div>
+
+                <div class="inline-block px-3 py-1 border border-amber-500/50 text-amber-400 font-display text-sm mb-3">
+                    APEX →
+                </div>
+                <h3 class="text-2xl font-bold text-[#ebe5d5] mb-1">Warlord_536</h3>
+                <p class="text-sm text-gray-400">
+                    Warlord leads State 536 with unmatched main car CP and SvS rally leadership, setting the benchmark for the entire server.
+                </p>
+            </div>
+            <p class="text-xs text-gray-500">A little glory. A lot of good company.</p>
+        </section>
+
+        <!-- Section 8: The Off-Duty Corner -->
+        <section class="editorial-box p-6 sm:p-10 text-center">
+            <p class="text-xs font-display tracking-[0.22em] text-[#c8a96e] mb-2">✦ THE OFF-DUTY CORNER</p>
+            <h2 class="text-3xl sm:text-5xl font-bold text-[#ebe5d5] leading-tight mb-4">
+                SERIOUS ABOUT THE GAME.<br>NOT ALWAYS SERIOUS.
+            </h2>
+            <p class="text-sm text-gray-400 max-w-md mx-auto mb-8">
+                Big battles. Questionable memes. Legendary people. A little art, a little chaos, and a lot of State 536.
+            </p>
+
+            <!-- Category Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 max-w-xl mx-auto mb-8">
+                <button onclick="filterGallery('All', this)" class="gal-tab tab-active px-4 py-2 border border-[#ebe5d5]/15 text-xs">All</button>
+                <button onclick="filterGallery('Memes & Laughs', this)" class="gal-tab px-4 py-2 border border-[#ebe5d5]/15 text-xs text-gray-400">Memes & Laughs</button>
+                <button onclick="filterGallery('Art & Edits', this)" class="gal-tab px-4 py-2 border border-[#ebe5d5]/15 text-xs text-gray-400">Art & Edits</button>
+                <button onclick="filterGallery('Battle Moments', this)" class="gal-tab px-4 py-2 border border-[#ebe5d5]/15 text-xs text-gray-400">Battle Moments</button>
+                <button onclick="filterGallery('Alliance Life', this)" class="gal-tab px-4 py-2 border border-[#ebe5d5]/15 text-xs text-gray-400">Alliance Life</button>
+            </div>
+
+            <!-- Gallery Carousel Box -->
+            <div class="max-w-md mx-auto border border-[#ebe5d5]/15 bg-[#0a0c0e] p-5 text-left">
+                <div id="gallery-visual" class="h-52 rounded border border-[#ebe5d5]/10 mb-4 flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-zinc-900 to-black">
+                    <span id="gal-emoji" class="text-5xl mb-2">⚔️</span>
+                    <span id="gal-banner" class="font-display text-lg text-[#c8a96e]">STATE 536 SVS VICTORY</span>
+                </div>
+                <div id="gal-cat" class="text-xs text-gray-400 mb-1">Battle Moments</div>
+                <h3 id="gal-title" class="text-xl font-bold text-[#ebe5d5] mb-1">Capitol Held for 4 Hours Straight!</h3>
+                <div id="gal-author" class="text-xs text-gray-500 mb-5">By State 536 Council</div>
+
+                <div class="flex items-center justify-center gap-4 border-t border-[#ebe5d5]/10 pt-4">
+                    <button onclick="prevSlide()" class="w-10 h-10 border border-[#ebe5d5]/20 hover:border-[#c8a96e] flex items-center justify-center">←</button>
+                    <span id="gal-counter" class="font-display text-sm tracking-widest">1 / 3</span>
+                    <button onclick="nextSlide()" class="w-10 h-10 border border-[#ebe5d5]/20 hover:border-[#c8a96e] flex items-center justify-center">→</button>
+                </div>
+
+                <div class="text-center mt-5 pt-4 border-t border-[#ebe5d5]/10">
+                    <a href="#community" class="font-display text-xs tracking-[0.2em] underline underline-offset-4 hover:text-[#c8a96e]">
+                        ADD YOUR OWN →
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: Frequently Asked Questions -->
+        <section class="editorial-box p-6 sm:p-10">
+            <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5] text-center mb-8">
+                FREQUENTLY ASKED<br>QUESTIONS
+            </h2>
+            <div class="max-w-2xl mx-auto space-y-3" id="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="border border-[#ebe5d5]/15 bg-[#0a0c0e]">
+                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between text-sm text-[#ebe5d5]">
+                        <span>Who can apply to an alliance?</span>
+                        <span class="text-gray-400">⌄</span>
+                    </button>
+                    <div class="hidden px-4 pb-4 text-xs text-gray-400 leading-relaxed border-t border-[#ebe5d5]/10 pt-3">
+                        Any active Dark War Survival player looking for an organized, cooperative, and SvS-focused home in State 536 can apply.
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="border border-[#ebe5d5]/15 bg-[#0a0c0e]">
+                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between text-sm text-[#ebe5d5]">
+                        <span>What happens after I submit my application?</span>
+                        <span class="text-gray-400">⌄</span>
+                    </button>
+                    <div class="hidden px-4 pb-4 text-xs text-gray-400 leading-relaxed border-t border-[#ebe5d5]/10 pt-3">
+                        Your application details are copied/sent to the R4/R5 recruitment team of your chosen alliance. They will contact you in-game or via Discord within 24 hours.
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="border border-[#ebe5d5]/15 bg-[#0a0c0e]">
+                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between text-sm text-[#ebe5d5]">
+                        <span>Can I apply to another alliance in State 536?</span>
+                        <span class="text-gray-400">⌄</span>
+                    </button>
+                    <div class="hidden px-4 pb-4 text-xs text-gray-400 leading-relaxed border-t border-[#ebe5d5]/10 pt-3">
+                        Yes! You can select "Other" in the application form or contact any R5 directly in World Chat to find the best timezone and power match.
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="border border-[#ebe5d5]/15 bg-[#0a0c0e]">
+                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between text-sm text-[#ebe5d5]">
+                        <span>What should I prepare before migrating?</span>
+                        <span class="text-gray-400">⌄</span>
+                    </button>
+                    <div class="hidden px-4 pb-4 text-xs text-gray-400 leading-relaxed border-t border-[#ebe5d5]/10 pt-3">
+                        Ensure you have enough Migration Passes, no active marches or reinforcements, leave your current alliance, and keep resources within warehouse protection limits.
                     </div>
                 </div>
             </div>
@@ -286,81 +390,156 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-zinc-800 bg-zinc-950 py-8 text-center text-zinc-500 text-sm">
-        <p class="font-tech text-zinc-400 font-bold">SERVER #536 • DARK WAR SURVIVAL</p>
-        <p class="mt-1">Unofficial Fan & Community Portal built for Server #536 Survivors.</p>
+    <footer class="border-t border-[#ebe5d5]/15 bg-[#08090b] py-12 mt-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-6">
+            <div class="flex items-center gap-2.5">
+                <svg class="w-6 h-6 text-[#c8a96e]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4v5c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V7l8-4z"/>
+                </svg>
+                <span class="font-display text-2xl font-bold tracking-wider text-[#ebe5d5]">STATE 536</span>
+            </div>
+
+            <div class="flex flex-wrap gap-6 font-display text-xs tracking-[0.2em] text-gray-300">
+                <a href="#alliance-map" class="hover:text-[#c8a96e]">ALLIANCE MAP</a>
+                <a href="#apply" class="hover:text-[#c8a96e]">APPLY</a>
+                <a href="#community" class="hover:text-[#c8a96e]">COMMUNITY</a>
+            </div>
+
+            <div class="pt-6 border-t border-[#ebe5d5]/10 text-center">
+                <p class="font-display text-sm tracking-[0.22em] text-[#ebe5d5]">BUILT BY PLAYERS. FOR PLAYERS.</p>
+                <p class="text-xs text-gray-500 mt-1">Together, we survive. Together, we dominate.</p>
+            </div>
+        </div>
     </footer>
 
-    <!-- Interactive Data & Scripts -->
-    <script>
-        // 1. Live UTC Clock for Game Reset
-        function updateUTCClock() {
-            const now = new Date();
-            const hours = String(now.getUTCHours()).padStart(2, '0');
-            const minutes = String(now.getUTCMinutes()).padStart(2, '0');
-            const seconds = String(now.getUTCSeconds()).padStart(2, '0');
-            document.getElementById('utc-clock').textContent = `${hours}:${minutes}:${seconds}`;
-        }
-        setInterval(updateUTCClock, 1000);
-        updateUTCClock();
+    <!-- Migration Application Modal -->
+    <div id="apply-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="editorial-box max-w-md w-full p-6 sm:p-8 relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">✕</button>
+            <p class="text-xs font-display tracking-[0.2em] text-[#c8a96e] mb-1">STATE 536 MIGRATION</p>
+            <h3 class="text-2xl font-bold mb-4">APPLY TO <span id="modal-alliance-name" class="text-[#c8a96e]">APEX</span></h3>
+            
+            <form onsubmit="submitApplication(event)" class="space-y-4 text-sm">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">In-Game Name & Current State</label>
+                    <input type="text" id="app-name" required placeholder="e.g. Kazi_536 (State #510)" class="w-full bg-[#0a0c0e] border border-[#ebe5d5]/20 p-2.5 text-white focus:outline-none focus:border-[#c8a96e]">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Total Power & Main Car CP</label>
+                    <input type="text" id="app-power" required placeholder="e.g. 4.2G Total / 12.5G Main Car" class="w-full bg-[#0a0c0e] border border-[#ebe5d5]/20 p-2.5 text-white focus:outline-none focus:border-[#c8a96e]">
+                </div>
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">Discord / Contact ID</label>
+                    <input type="text" id="app-contact" required placeholder="e.g. username#0001" class="w-full bg-[#0a0c0e] border border-[#ebe5d5]/20 p-2.5 text-white focus:outline-none focus:border-[#c8a96e]">
+                </div>
+                <button type="submit" class="w-full gold-btn py-3 font-display tracking-[0.18em] text-sm font-bold">
+                    COPY & SUBMIT APPLICATION
+                </button>
+            </form>
+        </div>
+    </div>
 
-        // 2. Edit Your Server #536 Alliances Here
-        const alliancesData = [
-            { tag: "FROM", name: "GOD", r5: "RAINY", power: "65G", status: "NAP-10", lang: "Global / KOR" },
-            { tag: "Lie", name: "Moondie", r5: "Puzzle", power: "36G", status: "NAP-10", lang: "Global" },
-            { tag: "fr0m", name: "Supreme Loyal Guard", r5: "BaBy O S A L", power: "25G", status: "NAP-10", lang: "Global" },
-            { tag: "ATAK", name: "Guerriers du Chaos", r5: "Theygotme", power: "25G", status: "NAP-10", lang: "EN / ES" },
-            { tag: "YAR", name: "Yama's Reapers", r5: "Marcos95", power: "24G", status: "NAP-10", lang: "Global / HI" },
-            { tag: "DRN", name: "DarkRaveN", r5: "RavenWolf", power: "7G", status: "ACADEMY", lang: "Global / EN" }
+    <script>
+        // 1. Alliance Profiles Data (Edit Your Real Alliances Here)
+        const allianceProfiles = {
+            APEX: { name: "APEX - Apex Predators", desc: "Rank #1 SvS & Capitol Alliance. Active rallies, English/Global chat, 24/7 shield discipline." },
+            DRK:  { name: "DRK - Dark Legion", desc: "Competitive war alliance focused on coordinated SvS prep, boss hunts, and active Discord voice." },
+            VNM:  { name: "VNM - Venom Squad", desc: "Fast-growing tactical team welcoming active fighters and daily event contributors." },
+            OTHER:{ name: "State 536 Academies & Allies", desc: "Looking for a chill or growing alliance? Apply under 'Other' and we will match you with a NAP-10 team." }
+        };
+
+        function openAllianceModal(tag) {
+            const info = allianceProfiles[tag] || allianceProfiles.OTHER;
+            alert(`${info.name}\n\n${info.desc}\n\nClick OK to open the application form!`);
+            openApplyForm(tag);
+        }
+
+        function openApplyForm(tag) {
+            document.getElementById('modal-alliance-name').textContent = tag;
+            document.getElementById('apply-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('apply-modal').classList.add('hidden');
+        }
+
+        function submitApplication(e) {
+            e.preventDefault();
+            const alliance = document.getElementById('modal-alliance-name').textContent;
+            const name = document.getElementById('app-name').value;
+            const power = document.getElementById('app-power').value;
+            const contact = document.getElementById('app-contact').value;
+
+            const summary = `[STATE 536 APPLICATION]\nTarget Alliance: ${alliance}\nPlayer: ${name}\nPower: ${power}\nDiscord: ${contact}`;
+            navigator.clipboard.writeText(summary);
+            alert("Application copied to clipboard!\n\nPaste this in our State 536 Discord #migration channel or message the R5 in-game.");
+            closeModal();
+        }
+
+        // 2. Social & Community Channels Data
+        const channelsData = [
+            { alliance: "APEX", platform: "Discord", handle: "discord.gg/state536", desc: "Official State 536 War Room & Diplomacy Hub", link: "https://discord.com" },
+            { alliance: "DRK", platform: "YouTube", handle: "@State536_Battles", desc: "SvS Capitol Clash Highlights & Hero Guides", link: "https://youtube.com" },
+            { alliance: "VNM", platform: "Discord", handle: "VNM Recruitment Desk", desc: "Direct R4/R5 Interview & Migration Channel", link: "https://discord.com" },
+            { alliance: "Other", platform: "WhatsApp", handle: "State 536 R5 Council", desc: "Emergency Shield & NAP Coordination Group", link: "#community" }
         ];
 
-        const grid = document.getElementById('alliance-grid');
-        const searchInput = document.getElementById('alliance-search');
-        const filterSelect = document.getElementById('alliance-filter');
-
-        function renderAlliances() {
-            const query = searchInput.value.toLowerCase();
-            const filter = filterSelect.value;
-
-            const filtered = alliancesData.filter(a => {
-                const matchesSearch = a.tag.toLowerCase().includes(query) || 
-                                      a.name.toLowerCase().includes(query) || 
-                                      a.r5.toLowerCase().includes(query);
-                const matchesFilter = filter === "ALL" || a.status === filter;
-                return matchesSearch && matchesFilter;
+        function filterChannels(filter, btn) {
+            document.querySelectorAll('.channel-tab').forEach(b => {
+                b.classList.remove('tab-active');
+                b.classList.add('text-gray-400');
             });
+            if(btn) {
+                btn.classList.add('tab-active');
+                btn.classList.remove('text-gray-400');
+            }
 
-            grid.innerHTML = filtered.map(a => `
-                <div class="tactical-card p-5 rounded-lg flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-2">
-                            <span class="font-tech font-black text-red-500 text-lg">[${a.tag}]</span>
-                            <span class="text-xs font-bold px-2 py-0.5 rounded ${a.status === 'NAP-10' ? 'bg-green-500/15 text-green-400 border border-green-500/30' : 'bg-blue-500/15 text-blue-400 border border-blue-500/30'}">
-                                ${a.status}
-                            </span>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-3">${a.name}</h3>
+            const list = filter === 'ALL' ? channelsData : channelsData.filter(c => c.alliance === filter);
+            document.getElementById('channels-grid').innerHTML = list.map(c => `
+                <a href="${c.link}" target="_blank" class="block border border-[#ebe5d5]/15 bg-[#0a0c0e] p-5 hover:border-[#c8a96e] transition">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-xs font-medium">${c.platform}</span>
+                        <span class="text-gray-400 text-sm">↗</span>
                     </div>
-                    <div class="border-t border-zinc-800 pt-3 text-xs text-zinc-400 space-y-1">
-                        <div class="flex justify-between"><span>R5 Leader:</span> <span class="text-zinc-200 font-semibold">${a.r5}</span></div>
-                        <div class="flex justify-between"><span>Alliance Power:</span> <span class="text-amber-400 font-bold">${a.power}</span></div>
-                        <div class="flex justify-between"><span>Language:</span> <span class="text-zinc-300">${a.lang}</span></div>
-                    </div>
-                </div>
+                    <div class="text-[11px] font-display tracking-widest text-gray-400 mb-1">${c.alliance} · MEMBER-RUN CHANNEL</div>
+                    <div class="text-xl font-bold text-[#ebe5d5] mb-1">${c.handle}</div>
+                    <p class="text-xs text-gray-400">${c.desc}</p>
+                </a>
             `).join('');
         }
+        filterChannels('ALL');
 
-        searchInput.addEventListener('input', renderAlliances);
-        filterSelect.addEventListener('change', renderAlliances);
-        renderAlliances();
+        // 3. Off-Duty Gallery Slides
+        const slides = [
+            { cat: "Battle Moments", title: "Capitol Held for 4 Hours Straight!", author: "By State 536 Council", emoji: "⚔️", banner: "STATE 536 SVS VICTORY" },
+            { cat: "Memes & Laughs", title: "When you forget to shield 1 minute before KE", author: "By ShadowKazi", emoji: "😂", banner: "RIP TROOPS 2026" },
+            { cat: "Alliance Life", title: "Full Server Hive Formation Ready for War", author: "By APEX Leadership", emoji: "🛡️", banner: "UNITED WE STAND" }
+        ];
+        let currentSlide = 0;
 
-        // 3. Copy Buff Format Helper
-        function copyBuffFormat() {
-            const text = "[Server #536 Buff Request] Alliance: [TAG] | Name: YourName | Role Needed: Construction / Research / Training";
-            navigator.clipboard.writeText(text);
-            const btn = document.getElementById('copy-btn');
-            btn.textContent = "Copied to Clipboard!";
-            setTimeout(() => { btn.textContent = "Copy Buff Request Format"; }, 2500);
+        function renderSlide() {
+            const s = slides[currentSlide];
+            document.getElementById('gal-emoji').textContent = s.emoji;
+            document.getElementById('gal-banner').textContent = s.banner;
+            document.getElementById('gal-cat').textContent = s.cat;
+            document.getElementById('gal-title').textContent = s.title;
+            document.getElementById('gal-author').textContent = s.author;
+            document.getElementById('gal-counter').textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+        function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; renderSlide(); }
+        function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; renderSlide(); }
+        function filterGallery(cat, btn) {
+            document.querySelectorAll('.gal-tab').forEach(b => { b.classList.remove('tab-active'); b.classList.add('text-gray-400'); });
+            btn.classList.add('tab-active'); btn.classList.remove('text-gray-400');
+            const idx = slides.findIndex(s => s.cat === cat);
+            currentSlide = idx >= 0 ? idx : 0;
+            renderSlide();
+        }
+
+        // 4. FAQ Accordion
+        function toggleFaq(btn) {
+            const content = btn.nextElementSibling;
+            content.classList.toggle('hidden');
         }
     </script>
 </body>
