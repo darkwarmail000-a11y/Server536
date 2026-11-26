@@ -1,552 +1,1296 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STATE 536 · Dark War Survival</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0a0c0e;
-            --bg-card: #101316;
-            --text-cream: #ebe5d5;
-            --text-muted: #9ca3af;
-            --accent-gold: #c8a96e;
-            --border-subtle: rgba(235, 229, 213, 0.14);
-        }
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-cream);
-            font-family: 'Inter', sans-serif;
-            letter-spacing: 0.01em;
-        }
-        h1, h2, h3, .font-display {
-            font-family: 'Barlow Condensed', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-        .editorial-box {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-        }
-        .gold-btn {
-            border: 1px solid rgba(200, 169, 110, 0.45);
-            background: rgba(200, 169, 110, 0.06);
-            color: var(--text-cream);
-            transition: all 0.25s ease;
-        }
-        .gold-btn:hover {
-            border-color: var(--accent-gold);
-            background: rgba(200, 169, 110, 0.16);
-        }
-        .tab-active {
-            border-color: var(--accent-gold) !important;
-            color: var(--accent-gold) !important;
-            background: rgba(200, 169, 110, 0.08);
-        }
-        .hero-bg {
-            background: 
-                linear-gradient(to bottom, rgba(10, 12, 14, 0.55) 0%, rgba(10, 12, 14, 0.85) 75%, #0a0c0e 100%),
-                radial-gradient(circle at 65% 30%, rgba(200, 169, 110, 0.22), transparent 55%),
-                radial-gradient(circle at 25% 75%, rgba(126, 34, 206, 0.18), transparent 50%),
-                #121015;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A0C0E">
+<title>STATE 536 — Dark War: Survival Community</title>
+<meta name="description" content="State 536 in Dark War: Survival. Competitive alliances, active leadership and state-wide cooperation. Find the alliance that fits the way you play and apply to migrate.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0C0E; --card:#111418; --card-2:#161A1F; --border:#22262B; --border-2:#2E333A;
+  --gold:#D4AF37; --gold-2:#C89D54; --fire:#E05A2B;
+  --text:#ECEAE4; --muted:#9A9DA3; --dim:#6B6F76;
+  --display:'Oswald','Bebas Neue',Impact,sans-serif; --body:'Inter',system-ui,sans-serif;
+  --radius:6px; --max:1200px; --header-h:64px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+h1,h2,h3,h4{font-family:var(--display);text-transform:uppercase;letter-spacing:.02em;line-height:1.05;margin:0;font-weight:700}
+p{margin:0}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.section{padding:80px 0;border-top:1px solid var(--border)}
+.eyebrow{font-family:var(--display);font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2);font-weight:500}
+.eyebrow.fire{color:var(--fire)}
+.section-title{font-size:clamp(2rem,5vw,3.2rem);margin-top:8px}
+.section-lead{color:var(--muted);max-width:620px;margin-top:12px}
+.icon{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--display);text-transform:uppercase;letter-spacing:.08em;font-weight:600;font-size:.95rem;padding:13px 22px;border-radius:var(--radius);border:1px solid transparent;text-decoration:none;transition:background .2s,border-color .2s,color .2s,transform .15s;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--gold);color:#14110A}
+.btn-primary:hover{background:#E2BF4B}
+.btn-fire{background:var(--fire);color:#fff}
+.btn-fire:hover{background:#EE6A3A}
+.btn-ghost{background:transparent;border-color:var(--border-2);color:var(--text)}
+.btn-ghost:hover{border-color:var(--gold-2);color:var(--gold)}
+.btn-sm{padding:8px 14px;font-size:.82rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* Header */
+.header{position:sticky;top:0;z-index:50;background:rgba(10,12,14,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--header-h)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:1.35rem;letter-spacing:.06em}
+.brand .icon{color:var(--gold);width:26px;height:26px}
+.nav{display:flex;gap:4px}
+.nav a{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.88rem;text-decoration:none;color:var(--muted);padding:20px 12px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.nav a:hover{color:var(--text)}
+.nav a.active{color:var(--text);border-bottom-color:var(--fire)}
+.nav a.nav-apply{color:var(--gold)}
+.menu-btn{display:none;background:none;border:1px solid var(--border-2);border-radius:var(--radius);width:42px;height:42px;align-items:center;justify-content:center}
+.menu-btn .icon{width:22px;height:22px}
+@media (max-width:860px){
+  .menu-btn{display:inline-flex}
+  .nav{position:absolute;top:var(--header-h);left:0;right:0;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--border);padding:8px 20px 16px;display:none}
+  .nav.open{display:flex}
+  .nav a{padding:14px 4px;border-bottom:1px solid var(--border)}
+  .nav a.active{border-bottom-color:var(--border);color:var(--fire)}
+}
+
+/* Hero */
+.hero{position:relative;min-height:min(88vh,780px);display:flex;align-items:center;overflow:hidden;isolation:isolate}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.4s ease,transform 8s ease;transform:scale(1.06);z-index:-3}
+.hero-slide.active{opacity:1;transform:scale(1)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(10,12,14,.96) 0%,rgba(10,12,14,.78) 45%,rgba(10,12,14,.35) 100%),linear-gradient(0deg,var(--bg) 0%,transparent 35%)}
+.hero-crest{position:absolute;right:6%;top:50%;transform:translateY(-50%);width:min(34vw,360px);opacity:.16;z-index:-1;color:var(--gold)}
+.hero-content{padding:80px 0 100px;max-width:720px}
+.hero h1{font-size:clamp(2.8rem,8vw,5.6rem);margin:18px 0 22px;line-height:.98}
+.hero h1 span{display:block}
+.hero h1 .accent{color:var(--gold)}
+.hero p.lead{color:#C9C7C1;font-size:1.1rem;max-width:520px;margin-bottom:32px}
+.hero-controls{position:absolute;right:20px;bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-dots{display:flex;gap:6px}
+.hero-dots button{width:22px;height:3px;border:0;padding:0;background:rgba(255,255,255,.25);border-radius:2px}
+.hero-dots button.active{background:var(--gold)}
+.pause-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(10,12,14,.6);display:inline-flex;align-items:center;justify-content:center}
+.pause-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Pillars */
+.pillars{margin-top:-40px;position:relative;z-index:2}
+.pillars-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);display:grid;grid-template-columns:1fr}
+.pillar{display:flex;gap:16px;align-items:flex-start;padding:26px 24px}
+.pillar + .pillar{border-top:1px solid var(--border)}
+.pillar-icon{width:46px;height:46px;border:1px solid var(--border-2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:20px}
+.pillar h3{font-size:1.25rem}
+.pillar p{color:var(--muted);font-size:.95rem;margin-top:4px}
+@media (min-width:860px){.pillars-card{grid-template-columns:repeat(3,1fr)}.pillar + .pillar{border-top:0;border-left:1px solid var(--border)}}
+
+/* Tabs */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:32px 0 24px}
+.tab{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:.88rem;padding:10px 18px;border:1px solid var(--border-2);border-radius:var(--radius);background:var(--card);color:var(--muted);transition:all .2s}
+.tab:hover{color:var(--text);border-color:var(--dim)}
+.tab[aria-selected="true"]{background:rgba(224,90,43,.12);border-color:var(--fire);color:#fff}
+
+/* Explorer */
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius)}
+.overview-grid{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:960px){.overview-grid{grid-template-columns:1.35fr 1fr}}
+.map{padding:20px}
+.map-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.map-head h3{font-size:1.1rem}
+.map-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
+.map-legend span{display:inline-flex;align-items:center;gap:6px}
+.map-legend i{width:10px;height:10px;border-radius:2px;display:inline-block}
+.map-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;aspect-ratio:6/4;background:#0C0E11;padding:4px;border:1px solid var(--border);border-radius:4px}
+.zone{border:1px solid rgba(255,255,255,.04);border-radius:3px;background:var(--zone,#15181c);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:clamp(.55rem,1.4vw,.8rem);letter-spacing:.08em;color:rgba(255,255,255,.75);padding:0;transition:filter .2s,outline-color .2s;outline:1px solid transparent}
+.zone[data-alliance]:hover,.zone[data-alliance]:focus-visible{filter:brightness(1.5);outline-color:var(--gold)}
+.zone.capitol{background:repeating-linear-gradient(45deg,#2a2412,#2a2412 6px,#1f1b0e 6px,#1f1b0e 12px);color:var(--gold);cursor:default}
+.zone.neutral{cursor:default;color:transparent}
+.alliance-list{display:grid;gap:12px}
+.alliance-mini{display:flex;gap:14px;align-items:center;padding:12px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);text-align:left;width:100%;transition:border-color .2s}
+.alliance-mini:hover{border-color:var(--fire)}
+.alliance-mini img,.alliance-mini .ph{width:72px;height:56px;object-fit:cover;border-radius:4px;flex-shrink:0;background:#1a1d22}
+.alliance-mini h4{font-size:1.1rem}
+.alliance-mini p{font-size:.82rem;color:var(--muted)}
+.alliance-mini .go{margin-left:auto;color:var(--gold)}
+
+.showcase-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:12px;flex-wrap:wrap}
+.back-btn{background:none;border:0;font-family:var(--display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:8px;padding:6px 0;font-size:.9rem}
+.back-btn:hover{color:var(--gold)}
+.art-card{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);min-height:440px;display:flex;align-items:flex-end;isolation:isolate}
+.art-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.art-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(10,12,14,.97) 8%,rgba(10,12,14,.6) 50%,rgba(10,12,14,.15) 100%)}
+.art-body{padding:32px;max-width:720px}
+.art-body h3{font-size:clamp(2rem,5vw,3.4rem);margin:10px 0 14px}
+.art-body p{color:#CFCDC7}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 24px}
+.tag{font-size:.78rem;padding:5px 10px;border:1px solid rgba(255,255,255,.18);border-radius:999px;color:#ddd;background:rgba(10,12,14,.5)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+.caption-bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px;padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--card);font-size:.82rem;color:var(--muted)}
+.caption-bar strong{color:var(--text);font-weight:600}
+.caption-bar .sep{color:var(--border-2);margin:0 8px}
+kbd{font-family:var(--body);font-size:.75rem;padding:1px 6px;border:1px solid var(--border-2);border-radius:3px;background:var(--card-2)}
+
+/* Profile */
+.profile{margin-top:24px;padding:32px}
+.profile-head{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.profile-head h3{font-size:clamp(2rem,5vw,3rem);margin-top:6px}
+.profile-head h3 em{font-style:normal;color:var(--fire)}
+.profile-grid{display:grid;gap:28px;grid-template-columns:1fr;padding-top:28px}
+@media (min-width:960px){.profile-grid{grid-template-columns:1fr 1fr}}
+.sub-title{font-size:1.05rem;letter-spacing:.12em;color:var(--gold-2);margin-bottom:14px}
+.profile .motto{font-family:var(--display);font-size:1.6rem;text-transform:uppercase;margin-bottom:10px}
+.profile p.desc{color:var(--muted)}
+.contacts{display:grid;gap:12px;grid-template-columns:1fr;margin-top:24px}
+@media (min-width:560px){.contacts{grid-template-columns:1fr 1fr}}
+.contact{border:1px solid var(--border-2);border-radius:var(--radius);padding:16px;background:var(--card-2)}
+.contact .role{font-family:var(--display);letter-spacing:.12em;font-size:.78rem;color:var(--fire);text-transform:uppercase}
+.contact .name{font-family:var(--display);font-size:1.3rem;text-transform:uppercase;margin:4px 0 10px}
+.copy-line{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:6px 6px 6px 10px;font-size:.85rem}
+.copy-line code{font-family:var(--body);color:#ddd;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.icon-btn{background:transparent;border:1px solid var(--border-2);border-radius:4px;width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--muted)}
+.icon-btn:hover{color:var(--gold);border-color:var(--gold-2)}
+.events-note{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:.88rem;margin-bottom:16px}
+.events-note .icon{color:var(--gold);width:20px;height:20px;margin-top:2px}
+.tz-toggle{display:inline-flex;border:1px solid var(--border-2);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;flex-wrap:wrap}
+.tz-toggle button{background:transparent;border:0;padding:9px 14px;font-size:.82rem;color:var(--muted)}
+.tz-toggle button[aria-pressed="true"]{background:var(--gold);color:#14110A;font-weight:600}
+.event{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 0;border-top:1px solid var(--border)}
+.event:last-child{border-bottom:1px solid var(--border)}
+.event h4{font-size:1.1rem}
+.event .times{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.time-chip{font-family:var(--display);font-size:1.05rem;letter-spacing:.06em;padding:4px 10px;border:1px solid var(--border-2);border-radius:4px;color:var(--gold)}
+.tz-label{font-size:.78rem;color:var(--dim);margin-top:10px}
+
+/* Unity & Steps */
+.unity{display:grid;gap:24px;padding:40px;background:linear-gradient(120deg,rgba(212,175,55,.08),transparent 60%),var(--card);border:1px solid var(--border);border-radius:var(--radius);align-items:center}
+@media (min-width:860px){.unity{grid-template-columns:1.2fr 1fr}}
+.unity h2{font-size:clamp(2rem,5vw,3.2rem)}
+.unity p{color:var(--muted)}
+.steps{display:grid;gap:16px;grid-template-columns:1fr;margin-top:32px}
+@media (min-width:560px){.steps{grid-template-columns:1fr 1fr}}
+@media (min-width:960px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;position:relative}
+.step-num{position:absolute;top:18px;right:18px;width:30px;height:30px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-family:var(--display);display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.step .icon{width:30px;height:30px;color:var(--gold)}
+.step h3{font-size:1.35rem;margin:18px 0 6px}
+.step p{color:var(--muted);font-size:.92rem}
+
+/* Social */
+.social-grid{display:grid;gap:16px;grid-template-columns:1fr}
+@media (min-width:560px){.social-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:960px){.social-grid{grid-template-columns:repeat(3,1fr)}}
+.social-card{display:block;text-decoration:none;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .2s,transform .2s}
+.social-card:hover{border-color:var(--fire);transform:translateY(-2px)}
+.social-thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:#15181c}
+.social-thumb img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+.social-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(10,12,14,.75),transparent 60%)}
+.platform{position:absolute;top:12px;left:12px;z-index:1;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:4px 9px;border-radius:999px;background:#000;color:#fff;border:1px solid rgba(255,255,255,.2);display:inline-flex;align-items:center;gap:6px}
+.platform i{width:7px;height:7px;border-radius:50%;display:inline-block}
+.ext{position:absolute;top:12px;right:12px;z-index:1;width:30px;height:30px;border-radius:50%;background:rgba(10,12,14,.75);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2)}
+.social-thumb .s-title{position:absolute;left:14px;right:14px;bottom:12px;z-index:1;font-family:var(--display);text-transform:uppercase;font-size:1.15rem;line-height:1.1}
+.social-meta{padding:14px 16px}
+.social-meta .a-tag{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--fire);font-weight:600}
+.social-meta .handle{color:var(--muted);font-size:.9rem;margin-top:2px}
+.empty{padding:40px;text-align:center;color:var(--muted);border:1px dashed var(--border-2);border-radius:var(--radius);grid-column:1/-1}
+
+/* Hall of fame */
+.fame-card{display:grid;grid-template-columns:1fr;overflow:hidden}
+@media (min-width:960px){.fame-card{grid-template-columns:1.4fr 1fr}}
+.fame-media{position:relative;min-height:300px;background:#15181c}
+.fame-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.fame-media .enlarge{position:absolute;right:14px;bottom:14px;background:rgba(10,12,14,.85);border:1px solid rgba(255,255,255,.25)}
+.fame-body{padding:32px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.fame-body h3{font-size:clamp(1.6rem,3.5vw,2.4rem)}
+.fame-body p{color:var(--muted)}
+.fame-stat{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px}
+.fame-stat div{font-size:.8rem;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}
+.fame-stat strong{display:block;font-family:var(--display);font-size:1.5rem;color:var(--gold);letter-spacing:.04em}
+.carousel-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:16px;flex-wrap:wrap}
+.carousel-ctrl .nav-btns{display:flex;align-items:center;gap:12px;font-family:var(--display);letter-spacing:.1em}
+.carousel-ctrl em{color:var(--muted);font-size:.9rem}
+
+/* Apply */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.pill{border:1px solid var(--border-2);background:var(--card);border-radius:999px;padding:9px 18px;font-family:var(--display);letter-spacing:.1em;text-transform:uppercase;font-size:.88rem;color:var(--muted)}
+.pill[aria-pressed="true"]{border-color:var(--gold);color:#14110A;background:var(--gold)}
+.status-line{margin-top:12px;color:var(--muted);font-size:.92rem;min-height:1.5em}
+.status-line strong{color:var(--gold)}
+.chapter{margin-top:28px;padding:32px;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap;background:linear-gradient(110deg,rgba(224,90,43,.14),transparent 55%),var(--card);border:1px solid var(--border);border-radius:var(--radius)}
+.chapter h3{font-size:clamp(1.5rem,3.5vw,2.2rem)}
+.chapter h3 span{display:block;color:var(--fire)}
+.form-card{margin-top:24px;padding:32px}
+.form-card > header h3{font-size:clamp(1.6rem,4vw,2.4rem)}
+.form-card > header p{color:var(--muted);margin-top:6px}
+.form-card > header p strong{color:var(--gold)}
+.progress{display:flex;align-items:center;gap:10px;margin:28px 0;list-style:none;padding:0;flex-wrap:wrap}
+.progress li{display:flex;align-items:center;gap:10px;font-family:var(--display);letter-spacing:.12em;font-size:.88rem;color:var(--dim)}
+.progress li .n{width:30px;height:30px;border-radius:50%;border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center}
+.progress li.current{color:var(--text)}
+.progress li.current .n{border-color:var(--gold);background:var(--gold);color:#14110A}
+.progress li.done{color:var(--gold-2)}
+.progress li.done .n{border-color:var(--gold-2);color:var(--gold-2)}
+.progress .line{flex:1;min-width:20px;height:1px;background:var(--border-2)}
+.fields{display:grid;gap:18px;grid-template-columns:1fr}
+@media (min-width:720px){.fields{grid-template-columns:1fr 1fr}}
+.field.full{grid-column:1/-1}
+.field label{display:block;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#C9C7C1;margin-bottom:7px}
+.field label .req{color:var(--fire)}
+.field input,.field select,.field textarea{width:100%;background:var(--bg);border:1px solid var(--border-2);border-radius:var(--radius);padding:12px 14px;color:var(--text);font:inherit;font-size:.95rem;transition:border-color .2s}
+.field textarea{min-height:96px;resize:vertical}
+.field select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:36px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--gold)}
+.field .hint{font-size:.78rem;color:var(--dim);margin-top:6px}
+.field .err{font-size:.78rem;color:#FF7A5C;margin-top:6px;display:none}
+.field.invalid input,.field.invalid select{border-color:#FF7A5C}
+.field.invalid .err{display:block}
+.form-actions{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:28px;flex-wrap:wrap}
+.lock-note{display:flex;gap:8px;align-items:center;color:var(--dim);font-size:.85rem}
+.summary{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:4px 20px}
+.summary dl{margin:0;display:grid;grid-template-columns:1fr}
+.summary .row{display:grid;grid-template-columns:minmax(140px,1fr) 2fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:.92rem}
+.summary .row:last-child{border-bottom:0}
+.summary dt{color:var(--dim);text-transform:uppercase;font-size:.75rem;letter-spacing:.1em;font-weight:600;padding-top:2px}
+.summary dd{margin:0;word-break:break-word}
+.preview-text{white-space:pre-wrap;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;color:var(--muted);background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-top:16px;max-height:220px;overflow:auto}
+
+/* Footer */
+.footer{border-top:1px solid var(--border);padding:48px 0 24px;background:#08090B}
+.footer-top{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center;padding-bottom:28px;border-bottom:1px solid var(--border)}
+.footer-brand{display:flex;align-items:center;gap:14px}
+.footer-brand .icon{width:34px;height:34px;color:var(--gold)}
+.footer-brand strong{font-family:var(--display);font-size:1.4rem;letter-spacing:.06em;display:block}
+.footer-brand span{font-family:var(--display);color:var(--muted);letter-spacing:.12em;font-size:.82rem}
+.footer-apply{font-family:var(--display);letter-spacing:.1em;color:var(--gold);text-decoration:none;font-size:1.05rem}
+.footer-apply:hover{color:#fff}
+.footer-links{display:flex;flex-wrap:wrap;gap:6px 20px;padding-top:20px}
+.footer-links button{background:none;border:0;padding:4px 0;color:var(--dim);font-size:.84rem}
+.footer-links button:hover{color:var(--text)}
+.footer-legal{color:var(--dim);font-size:.78rem;margin-top:14px}
+
+/* Modal & toast */
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(4,5,6,.88);backdrop-filter:blur(4px)}
+.modal.open{display:flex}
+.modal-box{background:var(--card);border:1px solid var(--border-2);border-radius:var(--radius);width:100%;max-width:980px;max-height:92vh;overflow:auto;position:relative}
+.modal-box.small{max-width:560px;padding:32px}
+.modal-close{position:sticky;top:12px;float:right;margin:12px 12px 0 0;width:40px;height:40px;border-radius:50%;border:1px solid var(--border-2);background:var(--bg);display:inline-flex;align-items:center;justify-content:center;z-index:2}
+.modal-close:hover{border-color:var(--gold);color:var(--gold)}
+.modal-box.small .modal-close{position:absolute;top:12px;right:12px;margin:0}
+.modal-box h3{font-size:1.8rem;margin-bottom:12px}
+.modal-box.small p{color:var(--muted);margin-bottom:12px}
+.lb-inner{padding:32px}
+.podium{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;align-items:end;max-width:640px;margin:24px auto 32px}
+.pod{text-align:center;background:var(--card-2);border:1px solid var(--border-2);border-radius:var(--radius) var(--radius) 0 0;padding:16px 8px}
+.pod.p1{padding-top:28px;border-color:var(--gold);background:linear-gradient(0deg,var(--card-2),rgba(212,175,55,.14))}
+.pod.p2{padding-top:18px}
+.pod .crown{color:var(--gold);width:28px;height:28px;margin:0 auto 6px}
+.pod .rank{font-family:var(--display);font-size:2.4rem;line-height:1;color:var(--gold)}
+.pod.p2 .rank,.pod.p3 .rank{color:#C9C7C1;font-size:1.9rem}
+.pod .pname{font-weight:700;margin-top:6px;word-break:break-word}
+.pod .pmeta{font-size:.78rem;color:var(--muted)}
+.pod .cp{font-family:var(--display);font-size:1.05rem;margin-top:6px;letter-spacing:.04em}
+.pod .cp small{display:block;font-family:var(--body);font-size:.68rem;color:var(--dim);letter-spacing:.1em}
+.rank-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.rank-table th{text-align:left;font-size:.72rem;letter-spacing:.12em;color:var(--dim);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--border-2);text-transform:uppercase}
+.rank-table td{padding:11px 12px;border-bottom:1px solid var(--border)}
+.rank-table tr.hl td{background:rgba(212,175,55,.06)}
+.rank-table .r{font-family:var(--display);color:var(--gold);font-size:1.05rem}
+.trend-up{color:#5BC48A}.trend-down{color:#FF7A5C}.trend-flat{color:var(--dim)}
+.table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius)}
+.lb-caption{margin-top:20px;color:var(--muted);text-align:center}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--card-2);border:1px solid var(--gold-2);color:var(--text);padding:12px 20px;border-radius:var(--radius);font-size:.92rem;z-index:200;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;max-width:calc(100% - 40px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+[hidden]{display:none!important}
+</style>
 </head>
-<body class="antialiased selection:bg-[#c8a96e] selection:text-black">
+<body>
 
-    <!-- Top Sticky Navigation -->
-    <nav class="sticky top-0 z-40 bg-[#0a0c0e]/95 backdrop-blur-md border-b border-[#ebe5d5]/10">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2.5">
-                <svg class="w-6 h-6 text-[#c8a96e]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4v5c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V7l8-4z"/>
-                </svg>
-                <span class="font-display text-2xl font-bold tracking-wider text-[#ebe5d5]">STATE 536</span>
-            </a>
-            <div class="flex items-center gap-4 sm:gap-7 text-xs sm:text-sm font-display tracking-widest text-[#ebe5d5]/85">
-                <a href="#alliance-map" class="hover:text-[#c8a96e] transition">ALLIANCE MAP</a>
-                <a href="#apply" class="hover:text-[#c8a96e] transition">APPLY</a>
-                <a href="#community" class="hover:text-[#c8a96e] transition">COMMUNITY</a>
-            </div>
-        </div>
+<a href="#main" class="sr-only">Skip to content</a>
+
+<!-- ============ SVG ICON SPRITE ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+    <symbol id="i-shield-check" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+    <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></symbol>
+    <symbol id="i-file-check" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></symbol>
+    <symbol id="i-handshake" viewBox="0 0 24 24"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></symbol>
+    <symbol id="i-max" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-crown" viewBox="0 0 24 24"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7z"/><path d="M5 20h14"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><polygon points="7 4 20 12 7 20 7 4"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><line x1="9" y1="5" x2="9" y2="19"/><line x1="15" y1="5" x2="15" y2="19"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="State 536 home">
+      <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+      <span>STATE 536</span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav">
+      <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="sr-only">Toggle menu</span>
+    </button>
+    <nav class="nav" id="siteNav" aria-label="Primary">
+      <a href="#alliances" data-nav>Alliance Map</a>
+      <a href="#unity" data-nav>Our Alliances</a>
+      <a href="#events" data-nav id="navEvents">Event Times</a>
+      <a href="#social" data-nav>Social</a>
+      <a href="#apply" data-nav class="nav-apply">Apply</a>
     </nav>
+  </div>
+</header>
 
-    <!-- Hero Section -->
-    <header class="hero-bg border-b border-[#ebe5d5]/10">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
-            <div class="flex items-center gap-2 text-xs font-display tracking-[0.22em] text-[#c8a96e] mb-4">
-                <span>DARK WAR SURVIVAL</span>
-                <span>•</span>
-                <span>STATE 536</span>
-            </div>
-            <h1 class="text-5xl sm:text-7xl font-extrabold leading-[0.95] text-[#ebe5d5] max-w-2xl mb-6">
-                A STRONGER TOMORROW.<br>BUILT TOGETHER.
-            </h1>
-            <p class="text-[#ebe5d5]/80 text-base sm:text-lg max-w-xl leading-relaxed mb-2">
-                Competitive alliances. Active leadership. State-wide cooperation.
-            </p>
-            <p class="text-[#ebe5d5]/70 text-sm sm:text-base max-w-xl mb-10">
-                Find the alliance that fits the way you play.
-            </p>
-            <div class="flex flex-wrap items-center justify-between gap-4">
-                <a href="#alliance-map" class="gold-btn px-7 py-3.5 font-display text-sm tracking-[0.18em] inline-flex items-center gap-3">
-                    <span>MEET OUR ALLIANCES</span>
-                    <span>↓</span>
-                </a>
-                <div class="w-12 h-12 rounded-full border border-[#ebe5d5]/20 flex items-center justify-center font-display text-sm text-[#c8a96e]">
-                    536
-                </div>
-            </div>
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top" aria-label="Welcome">
+  <div id="heroSlides" aria-hidden="true"></div>
+  <svg class="hero-crest" viewBox="0 0 200 230" aria-hidden="true">
+    <path d="M100 8 186 38v70c0 58-46 96-86 114C60 204 14 166 14 108V38z" fill="none" stroke="currentColor" stroke-width="5"/>
+    <path d="M100 26 168 50v58c0 46-36 78-68 94-32-16-68-48-68-94V50z" fill="none" stroke="currentColor" stroke-width="2"/>
+    <text x="100" y="138" text-anchor="middle" font-family="Oswald,Impact,sans-serif" font-weight="700" font-size="64" fill="currentColor">536</text>
+  </svg>
+  <div class="wrap">
+    <div class="hero-content">
+      <p class="eyebrow fire">Dark War Survival &bull; State 536</p>
+      <h1><span>A Stronger Tomorrow.</span><span class="accent">Built Together.</span></h1>
+      <p class="lead">Competitive alliances. Active leadership. State-wide cooperation. Find the alliance that fits the way you play.</p>
+      <a href="#alliances" class="btn btn-primary">Meet Our Alliances <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+    </div>
+  </div>
+  <div class="hero-controls">
+    <div class="hero-dots" id="heroDots" role="group" aria-label="Background slides"></div>
+    <button class="pause-btn" id="pauseBtn" aria-pressed="false" aria-label="Pause background slideshow">
+      <svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ============ PILLARS ============ -->
+<div class="wrap pillars">
+  <div class="pillars-card">
+    <div class="pillar"><div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></div><div><h3>Real People.</h3><p>A community of players building something lasting.</p></div></div>
+    <div class="pillar"><div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-compass"/></svg></div><div><h3>Clear Plans.</h3><p>Shared direction and coordination across the state.</p></div></div>
+    <div class="pillar"><div class="pillar-icon"><svg class="icon" aria-hidden="true"><use href="#i-trend"/></svg></div><div><h3>Shared Progress.</h3><p>We grow together. We win together.</p></div></div>
+  </div>
+</div>
+
+<!-- ============ ALLIANCE EXPLORER ============ -->
+<section class="section" id="alliances" style="border-top:0">
+  <div class="wrap">
+    <p class="eyebrow">State 536 &bull; Alliance Map</p>
+    <h2 class="section-title">Meet Your Next Alliance.</h2>
+    <p class="section-lead">Every alliance has its own identity. Explore the territories, meet the leaders and find your fit.</p>
+
+    <div class="tabs" role="tablist" aria-label="Alliances" id="allianceTabs"></div>
+
+    <div id="explorerOverview" role="tabpanel">
+      <div class="overview-grid">
+        <div class="panel map">
+          <div class="map-head">
+            <h3>Alliance Territories</h3>
+            <div class="map-legend" id="mapLegend"></div>
+          </div>
+          <div class="map-grid" id="mapGrid"></div>
+          <p class="tz-label">Illustrative map — select a territory to explore that alliance.</p>
         </div>
-    </header>
-
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-16">
-
-        <!-- Section 1: 3 Pillars -->
-        <section class="editorial-box divide-y divide-[#ebe5d5]/10">
-            <div class="p-6 sm:p-8 flex items-start gap-5">
-                <div class="w-12 h-12 rounded-full border border-[#ebe5d5]/15 flex items-center justify-center shrink-0 text-[#c8a96e]">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold text-[#ebe5d5] mb-1">REAL PEOPLE.</h2>
-                    <p class="text-sm text-gray-400">A community of players building something lasting.</p>
-                </div>
-            </div>
-            <div class="p-6 sm:p-8 flex items-start gap-5">
-                <div class="w-12 h-12 rounded-full border border-[#ebe5d5]/15 flex items-center justify-center shrink-0 text-[#c8a96e]">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold text-[#ebe5d5] mb-1">CLEAR PLANS.</h2>
-                    <p class="text-sm text-gray-400">Shared direction and coordination across the state.</p>
-                </div>
-            </div>
-            <div class="p-6 sm:p-8 flex items-start gap-5">
-                <div class="w-12 h-12 rounded-full border border-[#ebe5d5]/15 flex items-center justify-center shrink-0 text-[#c8a96e]">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
-                </div>
-                <div>
-                    <h2 class="text-2xl font-bold text-[#ebe5d5] mb-1">SHARED PROGRESS.</h2>
-                    <p class="text-sm text-gray-400">We grow together. We win together.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 2: Alliance Territories Map -->
-        <section id="alliance-map" class="editorial-box p-6 sm:p-10 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5] mb-2">MEET YOUR NEXT ALLIANCE.</h2>
-            <p class="text-sm text-gray-400 max-w-lg mx-auto mb-8">
-                Get to know the teams of State 536. Explore their profiles and find the alliance that feels like home.
-            </p>
-
-            <!-- Illustrative Circular Capitol Map -->
-            <div class="relative max-w-xl mx-auto rounded border border-[#ebe5d5]/15 overflow-hidden bg-[#0b0d10] p-6 sm:p-10 mb-6"
-                 style="background-image: radial-gradient(circle at 25% 30%, rgba(217, 119, 6, 0.22), transparent 45%), radial-gradient(circle at 75% 30%, rgba(220, 38, 38, 0.22), transparent 45%), radial-gradient(circle at 50% 80%, rgba(147, 51, 234, 0.24), transparent 50%);">
-                
-                <!-- Decorative Capitol Ring -->
-                <div class="w-44 h-44 sm:w-56 sm:h-56 mx-auto rounded-full border border-dashed border-[#c8a96e]/30 flex items-center justify-center relative">
-                    <div class="w-20 h-20 rounded-full border border-[#c8a96e]/50 bg-[#0a0c0e]/90 flex flex-col items-center justify-center">
-                        <span class="font-display text-xs text-[#c8a96e] tracking-widest">CAPITAL</span>
-                        <span class="font-display text-lg font-bold">536</span>
-                    </div>
-
-                    <!-- Alliance Territory Badges (Click to Open Info/Apply) -->
-                    <button onclick="openAllianceModal('FROM')" class="absolute -top-4 -left-8 sm:-left-14 px-4 py-2 bg-[#0a0c0e]/95 border border-amber-500/60 text-amber-400 font-display text-lg tracking-wider hover:scale-105 transition">
-                        FROM ↗
-                    </button>
-                    <button onclick="openAllianceModal('Lie')" class="absolute -top-4 -right-8 sm:-right-14 px-4 py-2 bg-[#0a0c0e]/95 border border-red-500/60 text-red-400 font-display text-lg tracking-wider hover:scale-105 transition">
-                        Lie ↗
-                    </button>
-                    <button onclick="openAllianceModal('ATAK')" class="absolute -bottom-4 -right-8 sm:-right-14 px-4 py-2 bg-[#0a0c0e]/95 border border-purple-500/60 text-purple-400 font-display text-lg tracking-wider hover:scale-105 transition">
-                        ATAK ↗
-                    </button>
-                    <button onclick="openAllianceModal('YAR')" class="absolute -bottom-4 -left-8 sm:-left-14 px-4 py-2 bg-[#0a0c0e]/95 border border-blue-500/60 text-blue-400 font-display text-lg tracking-wider hover:scale-105 transition">
-                        YAR ↗
-                    </button>
-
-</button>
-
-                </div>
-            </div>
-
-            <p class="text-xs text-gray-400 mb-1">Select an alliance to enter its territory.</p>
-            <p class="text-[11px] font-display tracking-[0.2em] text-gray-500 mb-6">ALLIANCE TERRITORIES · ILLUSTRATIVE MAP</p>
-
-            <button onclick="openAllianceModal('OTHER')" class="gold-btn px-6 py-3 font-display text-sm tracking-[0.18em] inline-flex items-center gap-2">
-                <span>OTHER ALLIANCES</span>
-                <span>→</span>
-            </button>
-        </section>
-
-        <!-- Section 3: Start Your Application -->
-        <section id="apply" class="editorial-box p-6 sm:p-10 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5] mb-2">START YOUR APPLICATION</h2>
-            <p class="text-sm text-gray-400 mb-8">Choose an alliance below to open your application form.</p>
-
-            <div class="grid grid-cols-4 border border-[#ebe5d5]/15 divide-x divide-[#ebe5d5]/15 max-w-xl mx-auto">
-                <button onclick="openApplyForm('FROM')" class="py-4 font-display text-lg text-amber-400 hover:bg-amber-500/10 transition">FROM</button>
-                <button onclick="openApplyForm('Lie')" class="py-4 font-display text-lg text-red-400 hover:bg-red-500/10 transition">Lie</button>
-                <button onclick="openApplyForm('ATAK')" class="py-4 font-display text-lg text-purple-400 hover:bg-purple-500/10 transition">ATAK</button>
-                <button onclick="openApplyForm('Other')" class="py-4 font-display text-lg text-[#ebe5d5] hover:bg-white/5 transition">Other</button>
-            </div>
-        </section>
-
-        <!-- Section 4: Different Alliances. One State. -->
-        <section class="editorial-box p-8 sm:p-12 relative overflow-hidden"
-                 style="background-image: linear-gradient(to right, rgba(16,19,22,0.96) 45%, rgba(16,19,22,0.65)), radial-gradient(circle at 85% 50%, rgba(200, 169, 110, 0.2), transparent 60%);">
-            <h2 class="text-3xl sm:text-5xl font-bold text-[#ebe5d5] leading-tight mb-4">
-                DIFFERENT ALLIANCES.<br>ONE STATE.
-            </h2>
-            <p class="text-sm sm:text-base text-gray-300 max-w-lg leading-relaxed">
-                We build our own teams, but move forward together. Shared knowledge, mutual respect and support across alliance lines.
-            </p>
-        </section>
-
-        <!-- Section 5: Your Path To State 536 -->
-        <section class="editorial-box p-6 sm:p-10 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5] mb-10">YOUR PATH TO STATE 536</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-8">
-                <div>
-                    <div class="flex items-center justify-center gap-3 mb-3 text-[#c8a96e]">
-                        <span class="w-8 h-8 rounded-full border border-[#c8a96e]/50 flex items-center justify-center font-display text-sm">1</span>
-                        <span class="text-xl">📋</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-1">APPLY</h3>
-                    <p class="text-xs text-gray-400">Submit your application with key information.</p>
-                </div>
-                <div>
-                    <div class="flex items-center justify-center gap-3 mb-3 text-[#c8a96e]">
-                        <span class="w-8 h-8 rounded-full border border-[#c8a96e]/50 flex items-center justify-center font-display text-sm">2</span>
-                        <span class="text-xl">✅</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-1">REVIEW</h3>
-                    <p class="text-xs text-gray-400">Alliance leaders review your application.</p>
-                </div>
-                <div>
-                    <div class="flex items-center justify-center gap-3 mb-3 text-[#c8a96e]">
-                        <span class="w-8 h-8 rounded-full border border-[#c8a96e]/50 flex items-center justify-center font-display text-sm">3</span>
-                        <span class="text-xl">🤝</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-1">CONNECT</h3>
-                    <p class="text-xs text-gray-400">Connect with the team and get to know each other.</p>
-                </div>
-                <div>
-                    <div class="flex items-center justify-center gap-3 mb-3 text-[#c8a96e]">
-                        <span class="w-8 h-8 rounded-full border border-[#c8a96e]/50 flex items-center justify-center font-display text-sm">4</span>
-                        <span class="text-xl">🛡️</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-1">PREPARE</h3>
-                    <p class="text-xs text-gray-400">Finalize your move and prepare for battle.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 6: Community & Social Channels (#community) -->
-        <section id="community" class="editorial-box p-6 sm:p-10">
-            <div class="text-center mb-8">
-                <p class="text-xs font-display tracking-[0.22em] text-[#c8a96e] mb-2">SOCIAL · CONNECT WITH THE PLAYERS</p>
-                <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5]">LIFE INSIDE THE ALLIANCES</h2>
-            </div>
-
-            <!-- Filter Tabs -->
-            <div class="flex flex-wrap justify-center border border-[#ebe5d5]/15 divide-x divide-[#ebe5d5]/15 max-w-lg mx-auto mb-8">
-                <button onclick="filterChannels('ALL', this)" class="channel-tab tab-active flex-1 py-2.5 px-3 font-display text-sm">ALL</button>
-                <button onclick="filterChannels('FROM', this)" class="channel-tab flex-1 py-2.5 px-3 font-display text-sm text-gray-400">FROM</button>
-                <button onclick="filterChannels('Lie', this)" class="channel-tab flex-1 py-2.5 px-3 font-display text-sm text-gray-400">Lie</button>
-                <button onclick="filterChannels('ATAK', this)" class="channel-tab flex-1 py-2.5 px-3 font-display text-sm text-gray-400">ATAK</button>
-                <button onclick="filterChannels('Other', this)" class="channel-tab flex-1 py-2.5 px-3 font-display text-sm text-gray-400">Other</button>
-            </div>
-
-            <div id="channels-grid" class="grid sm:grid-cols-2 gap-6">
-                <!-- Injected via JS -->
-            </div>
-        </section>
-
-        <!-- Section 7: Hall of Fame -->
-        <section class="editorial-box p-6 sm:p-10 text-center">
-            <p class="text-xs font-display tracking-[0.22em] text-[#c8a96e] mb-2">🏆 THE MOMENTS THAT MAKE US</p>
-            <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5] mb-2">STATE 536 HALL OF FAME</h2>
-            <p class="text-xs sm:text-sm text-gray-400 max-w-lg mx-auto mb-8">
-                Different banners. Shared memories. The wins, the laughs, and the "you had to be there" moments from our alliances.
-            </p>
-
-            <!-- Leaderboard Podium Card -->
-            <div class="max-w-xl mx-auto border border-[#ebe5d5]/15 bg-[#0c1118] p-6 mb-6 text-left">
-                <div class="grid grid-cols-3 gap-3 text-center mb-6 items-end">
-                    <div class="border border-blue-500/20 bg-blue-950/20 p-3 rounded">
-                        <div class="text-[10px] text-gray-400">#2 [Lie] Puzzle</div>
-                        <div class="font-display text-lg sm:text-xl font-bold text-white">36.06G</div>
-                    </div>
-                    <div class="border border-[#c8a96e]/50 bg-[#c8a96e]/10 p-4 rounded">
-                        <div class="text-xs text-[#c8a96e] font-bold">👑 #1 [FROM] RAINY</div>
-                        <div class="font-display text-xl sm:text-2xl font-extrabold text-white">65.57G</div>
-                    </div>
-                    <div class="border border-blue-500/20 bg-blue-950/20 p-3 rounded">
-                        <div class="text-[10px] text-gray-400">#3 [ATAK] Theygotme</div>
-                        <div class="font-display text-lg sm:text-xl font-bold text-white">25.07G</div>
-                    </div>
-                </div>
-
-                <div class="inline-block px-3 py-1 border border-amber-500/50 text-amber-400 font-display text-sm mb-3">
-                    FROM →
-                </div>
-                <h3 class="text-2xl font-bold text-[#ebe5d5] mb-1">Warlord_536</h3>
-                <p class="text-sm text-gray-400">
-                    Fbaaz leads State 536 with unmatched main car CP 6.20G and SvS rally leadership, setting the benchmark for the entire server.
-                </p>
-            </div>
-            <p class="text-xs text-gray-500">A little glory. A lot of good company.</p>
-        </section>
-
-        <!-- Section 8: The Off-Duty Corner -->
-        <section class="editorial-box p-6 sm:p-10 text-center">
-            <p class="text-xs font-display tracking-[0.22em] text-[#c8a96e] mb-2">✦ THE OFF-DUTY CORNER</p>
-            <h2 class="text-3xl sm:text-5xl font-bold text-[#ebe5d5] leading-tight mb-4">
-                SERIOUS ABOUT THE GAME.<br>NOT ALWAYS SERIOUS.
-            </h2>
-            <p class="text-sm text-gray-400 max-w-md mx-auto mb-8">
-                Big battles. Questionable memes. Legendary people. A little art, a little chaos, and a lot of State 536.
-            </p>
-
-            <!-- Category Buttons -->
-            <div class="flex flex-wrap justify-center gap-2 max-w-xl mx-auto mb-8">
-                <button onclick="filterGallery('All', this)" class="gal-tab tab-active px-4 py-2 border border-[#ebe5d5]/15 text-xs">All</button>
-                <button onclick="filterGallery('Memes & Laughs', this)" class="gal-tab px-4 py-2 border border-[#ebe5d5]/15 text-xs text-gray-400">Memes & Laughs</button>
-                <button onclick="filterGallery('Art & Edits', this)" class="gal-tab px-4 py-2 border border-[#ebe5d5]/15 text-xs text-gray-400">Art & Edits</button>
-                <button onclick="filterGallery('Battle Moments', this)" class="gal-tab px-4 py-2 border border-[#ebe5d5]/15 text-xs text-gray-400">Battle Moments</button>
-                <button onclick="filterGallery('Alliance Life', this)" class="gal-tab px-4 py-2 border border-[#ebe5d5]/15 text-xs text-gray-400">Alliance Life</button>
-            </div>
-
-            <!-- Gallery Carousel Box -->
-            <div class="max-w-md mx-auto border border-[#ebe5d5]/15 bg-[#0a0c0e] p-5 text-left">
-                <div id="gallery-visual" class="h-52 rounded border border-[#ebe5d5]/10 mb-4 flex flex-col items-center justify-center p-4 text-center bg-gradient-to-br from-zinc-900 to-black">
-                    <span id="gal-emoji" class="text-5xl mb-2">⚔️</span>
-                    <span id="gal-banner" class="font-display text-lg text-[#c8a96e]">STATE 536 SVS VICTORY</span>
-                </div>
-                <div id="gal-cat" class="text-xs text-gray-400 mb-1">Battle Moments</div>
-                <h3 id="gal-title" class="text-xl font-bold text-[#ebe5d5] mb-1">Capitol Held for 4 Hours Straight!</h3>
-                <div id="gal-author" class="text-xs text-gray-500 mb-5">By State 536 Council</div>
-
-                <div class="flex items-center justify-center gap-4 border-t border-[#ebe5d5]/10 pt-4">
-                    <button onclick="prevSlide()" class="w-10 h-10 border border-[#ebe5d5]/20 hover:border-[#c8a96e] flex items-center justify-center">←</button>
-                    <span id="gal-counter" class="font-display text-sm tracking-widest">1 / 3</span>
-                    <button onclick="nextSlide()" class="w-10 h-10 border border-[#ebe5d5]/20 hover:border-[#c8a96e] flex items-center justify-center">→</button>
-                </div>
-
-                <div class="text-center mt-5 pt-4 border-t border-[#ebe5d5]/10">
-                    <a href="#community" class="font-display text-xs tracking-[0.2em] underline underline-offset-4 hover:text-[#c8a96e]">
-                        ADD YOUR OWN →
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section 9: Frequently Asked Questions -->
-        <section class="editorial-box p-6 sm:p-10">
-            <h2 class="text-3xl sm:text-4xl font-bold text-[#ebe5d5] text-center mb-8">
-                FREQUENTLY ASKED<br>QUESTIONS
-            </h2>
-            <div class="max-w-2xl mx-auto space-y-3" id="faq-container">
-                <!-- FAQ Item 1 -->
-                <div class="border border-[#ebe5d5]/15 bg-[#0a0c0e]">
-                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between text-sm text-[#ebe5d5]">
-                        <span>Who can apply to an alliance?</span>
-                        <span class="text-gray-400">⌄</span>
-                    </button>
-                    <div class="hidden px-4 pb-4 text-xs text-gray-400 leading-relaxed border-t border-[#ebe5d5]/10 pt-3">
-                        Any active Dark War Survival player looking for an organized, cooperative, and SvS-focused home in State 536 can apply.
-                    </div>
-                </div>
-                <!-- FAQ Item 2 -->
-                <div class="border border-[#ebe5d5]/15 bg-[#0a0c0e]">
-                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between text-sm text-[#ebe5d5]">
-                        <span>What happens after I submit my application?</span>
-                        <span class="text-gray-400">⌄</span>
-                    </button>
-                    <div class="hidden px-4 pb-4 text-xs text-gray-400 leading-relaxed border-t border-[#ebe5d5]/10 pt-3">
-                        Your application details are copied/sent to the R4/R5 recruitment team of your chosen alliance. They will contact you in-game or via Discord within 24 hours.
-                    </div>
-                </div>
-                <!-- FAQ Item 3 -->
-                <div class="border border-[#ebe5d5]/15 bg-[#0a0c0e]">
-                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between text-sm text-[#ebe5d5]">
-                        <span>Can I apply to another alliance in State 536?</span>
-                        <span class="text-gray-400">⌄</span>
-                    </button>
-                    <div class="hidden px-4 pb-4 text-xs text-gray-400 leading-relaxed border-t border-[#ebe5d5]/10 pt-3">
-                        Yes! You can select "Other" in the application form or contact any R5 directly in World Chat to find the best timezone and power match.
-                    </div>
-                </div>
-                <!-- FAQ Item 4 -->
-                <div class="border border-[#ebe5d5]/15 bg-[#0a0c0e]">
-                    <button onclick="toggleFaq(this)" class="w-full p-4 text-left flex items-center justify-between text-sm text-[#ebe5d5]">
-                        <span>What should I prepare before migrating?</span>
-                        <span class="text-gray-400">⌄</span>
-                    </button>
-                    <div class="hidden px-4 pb-4 text-xs text-gray-400 leading-relaxed border-t border-[#ebe5d5]/10 pt-3">
-                        Ensure you have enough Migration Book, no active marches or reinforcements, leave your current alliance, and keep resources within warehouse protection limits.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-[#ebe5d5]/15 bg-[#08090b] py-12 mt-16">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 space-y-6">
-            <div class="flex items-center gap-2.5">
-                <svg class="w-6 h-6 text-[#c8a96e]" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4v5c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V7l8-4z"/>
-                </svg>
-                <span class="font-display text-2xl font-bold tracking-wider text-[#ebe5d5]">STATE 536</span>
-            </div>
-
-            <div class="flex flex-wrap gap-6 font-display text-xs tracking-[0.2em] text-gray-300">
-                <a href="#alliance-map" class="hover:text-[#c8a96e]">ALLIANCE MAP</a>
-                <a href="#apply" class="hover:text-[#c8a96e]">APPLY</a>
-                <a href="#community" class="hover:text-[#c8a96e]">COMMUNITY</a>
-            </div>
-
-            <div class="pt-6 border-t border-[#ebe5d5]/10 text-center">
-                <p class="font-display text-sm tracking-[0.22em] text-[#ebe5d5]">BUILT BY PLAYERS. FOR PLAYERS.</p>
-                <p class="text-xs text-gray-500 mt-1">Together, we survive. Together, we dominate.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Migration Application Modal -->
-    <div id="apply-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="editorial-box max-w-md w-full p-6 sm:p-8 relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">✕</button>
-            <p class="text-xs font-display tracking-[0.2em] text-[#c8a96e] mb-1">STATE 536 MIGRATION</p>
-            <h3 class="text-2xl font-bold mb-4">APPLY TO <span id="modal-alliance-name" class="text-[#c8a96e]">FROM</span></h3>
-            
-            <form onsubmit="submitApplication(event)" class="space-y-4 text-sm">
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">In-Game Name & Current State</label>
-                    <input type="text" id="app-name" required placeholder="e.g. Kazi_536 (State #510)" class="w-full bg-[#0a0c0e] border border-[#ebe5d5]/20 p-2.5 text-white focus:outline-none focus:border-[#c8a96e]">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Total Power & Main Car CP</label>
-                    <input type="text" id="app-power" required placeholder="e.g. 4.2G Total / 12.5G Main Car" class="w-full bg-[#0a0c0e] border border-[#ebe5d5]/20 p-2.5 text-white focus:outline-none focus:border-[#c8a96e]">
-                </div>
-                <div>
-                    <label class="block text-xs text-gray-400 mb-1">Discord / Contact ID</label>
-                    <input type="text" id="app-contact" required placeholder="e.g. username#0001" class="w-full bg-[#0a0c0e] border border-[#ebe5d5]/20 p-2.5 text-white focus:outline-none focus:border-[#c8a96e]">
-                </div>
-                <button type="submit" class="w-full gold-btn py-3 font-display tracking-[0.18em] text-sm font-bold">
-                    COPY & SUBMIT APPLICATION
-                </button>
-            </form>
-        </div>
+        <div class="alliance-list" id="allianceList"></div>
+      </div>
     </div>
 
-    <script>
-        // 1. Alliance Profiles Data (Edit Your Real Alliances Here)
-        const allianceProfiles = {
-            APEX: { name: "APEX - Apex Predators", desc: "Rank #1 SvS & Capitol Alliance. Active rallies, English/Global chat, 24/7 shield discipline." },
-            DRK:  { name: "DRK - Dark Legion", desc: "Competitive war alliance focused on coordinated SvS prep, boss hunts, and active Discord voice." },
-            VNM:  { name: "VNM - Venom Squad", desc: "Fast-growing tactical team welcoming active fighters and daily event contributors." },
-            OTHER:{ name: "State 536 Academies & Allies", desc: "Looking for a chill or growing alliance? Apply under 'Other' and we will match you with a NAP-10 team." }
-        };
+    <div id="explorerShowcase" role="tabpanel" hidden>
+      <div class="showcase-top">
+        <button class="back-btn" id="backBtn"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg> State Overview</button>
+      </div>
+      <article class="art-card">
+        <img id="scImg" src="" alt="">
+        <div class="art-body">
+          <p class="eyebrow fire" id="scSub"></p>
+          <h3 id="scTitle"></h3>
+          <p id="scDesc"></p>
+          <div class="tags" id="scTags"></div>
+          <div class="btn-row">
+            <button class="btn btn-fire" id="scChoose"></button>
+            <button class="btn btn-ghost" id="scProfile">Alliance Profile <svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg></button>
+          </div>
+        </div>
+      </article>
+      <div class="caption-bar">
+        <span><strong id="scCapName"></strong> &bull; Territory view — <kbd>Esc</kbd> to return<span class="sep">|</span>Alliance Territories &bull; Illustrative Map</span>
+        <button class="btn btn-ghost btn-sm" id="scNext">Other Alliances <svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+      </div>
+    </div>
 
-        function openAllianceModal(tag) {
-            const info = allianceProfiles[tag] || allianceProfiles.OTHER;
-            alert(`${info.name}\n\n${info.desc}\n\nClick OK to open the application form!`);
-            openApplyForm(tag);
-        }
+    <!-- Full profile -->
+    <article class="panel profile" id="allianceProfile" hidden aria-labelledby="pfTitle">
+      <div class="profile-head">
+        <div>
+          <p class="eyebrow">State 536 / Alliance Profile</p>
+          <h3 id="pfTitle"></h3>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-ghost btn-sm" id="pfClose"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg> Close Profile</button>
+          <button class="btn btn-primary btn-sm" id="pfApply"></button>
+        </div>
+      </div>
+      <div class="profile-grid">
+        <div>
+          <h4 class="sub-title" id="pfAboutTitle"></h4>
+          <p class="motto" id="pfMotto"></p>
+          <p class="desc" id="pfDesc"></p>
+          <h4 class="sub-title" style="margin-top:28px">Your Alliance Contacts</h4>
+          <div class="contacts" id="pfContacts" style="margin-top:0"></div>
+        </div>
+        <div id="events">
+          <h4 class="sub-title">Plan Your Playtime</h4>
+          <p class="events-note"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><span>Event times are decided by member voting and may change.</span></p>
+          <div class="tz-toggle" role="group" aria-label="Time zone">
+            <button aria-pressed="true" data-tz="server" id="tzServer"></button>
+            <button aria-pressed="false" data-tz="local">Local Time</button>
+          </div>
+          <div id="pfEvents"></div>
+          <p class="tz-label" id="tzLabel"></p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
 
-        function openApplyForm(tag) {
-            document.getElementById('modal-alliance-name').textContent = tag;
-            document.getElementById('apply-modal').classList.remove('hidden');
-        }
+<!-- ============ UNITY + STEPS ============ -->
+<section class="section" id="unity">
+  <div class="wrap">
+    <div class="unity">
+      <div>
+        <p class="eyebrow">State 536</p>
+        <h2 style="margin-top:8px">Different Alliances.<br>One State.</h2>
+      </div>
+      <p>We build our own teams, but move forward together. Shared knowledge, mutual respect and support across alliance lines.</p>
+    </div>
+    <h2 class="section-title" style="margin-top:64px">Your Path to State 536</h2>
+    <div class="steps">
+      <div class="step"><span class="step-num">1</span><svg class="icon" aria-hidden="true"><use href="#i-clipboard"/></svg><h3>Apply</h3><p>Submit your application with key information.</p></div>
+      <div class="step"><span class="step-num">2</span><svg class="icon" aria-hidden="true"><use href="#i-file-check"/></svg><h3>Review</h3><p>Alliance leaders review your application.</p></div>
+      <div class="step"><span class="step-num">3</span><svg class="icon" aria-hidden="true"><use href="#i-handshake"/></svg><h3>Connect</h3><p>Connect with the team and get to know each other.</p></div>
+      <div class="step"><span class="step-num">4</span><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg><h3>Prepare</h3><p>Finalize your move and prepare for battle.</p></div>
+    </div>
+  </div>
+</section>
 
-        function closeModal() {
-            document.getElementById('apply-modal').classList.add('hidden');
-        }
+<!-- ============ SOCIAL ============ -->
+<section class="section" id="social">
+  <div class="wrap">
+    <p class="eyebrow">Member-run channels</p>
+    <h2 class="section-title">Life Inside the Alliances</h2>
+    <p class="section-lead">Battle replays, event guides and everyday moments — straight from the people who play here.</p>
+    <div class="tabs" role="tablist" aria-label="Filter social content" id="socialTabs"></div>
+    <div class="social-grid" id="socialGrid"></div>
+  </div>
+</section>
 
-        function submitApplication(e) {
-            e.preventDefault();
-            const alliance = document.getElementById('modal-alliance-name').textContent;
-            const name = document.getElementById('app-name').value;
-            const power = document.getElementById('app-power').value;
-            const contact = document.getElementById('app-contact').value;
+<!-- ============ HALL OF FAME ============ -->
+<section class="section" id="fame">
+  <div class="wrap">
+    <p class="eyebrow" id="fameScope">State Hall of Fame</p>
+    <h2 class="section-title">The Moments That Make Us</h2>
+    <p class="section-lead">Big wins. Best company. Stories only your alliance could write.</p>
+    <div class="panel fame-card" style="margin-top:32px" aria-live="polite">
+      <div class="fame-media">
+        <img id="fameImg" src="" alt="">
+        <button class="btn btn-ghost btn-sm enlarge" id="enlargeBtn"><svg class="icon" aria-hidden="true"><use href="#i-max"/></svg> Enlarge</button>
+      </div>
+      <div class="fame-body">
+        <p class="eyebrow fire" id="fameTag"></p>
+        <h3 id="fameTitle"></h3>
+        <p id="fameDesc"></p>
+        <div class="fame-stat" id="fameStats"></div>
+      </div>
+    </div>
+    <div class="carousel-ctrl">
+      <div class="nav-btns">
+        <button class="btn btn-ghost btn-sm" id="famePrev" aria-label="Previous record"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg></button>
+        <span id="fameCount" aria-live="polite">1 / 3</span>
+        <button class="btn btn-ghost btn-sm" id="fameNext" aria-label="Next record"><svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+      </div>
+      <em>A little glory. A lot of good company.</em>
+    </div>
+  </div>
+</section>
 
-            const summary = `[STATE 536 APPLICATION]\nTarget Alliance: ${alliance}\nPlayer: ${name}\nPower: ${power}\nDiscord: ${contact}`;
-            navigator.clipboard.writeText(summary);
-            alert("Application copied to clipboard!\n\nPaste this in our State 536 Discord #migration channel or message the R5 in-game.");
-            closeModal();
-        }
+<!-- ============ APPLY ============ -->
+<section class="section" id="apply">
+  <div class="wrap">
+    <p class="eyebrow">Migration</p>
+    <h2 class="section-title">Start Your Application</h2>
+    <div class="pills" id="applyPills" role="group" aria-label="Choose an alliance"></div>
+    <p class="status-line" id="statusLine" aria-live="polite"></p>
 
-        // 2. Social & Community Channels Data
-        const channelsData = [
-            { alliance: "FROM", platform: "Discord", handle: "discord.gg/state536", desc: "Official State 536 War Room & Diplomacy Hub", link: "https://discord.gg/MMtH8GRb" },
-            { alliance: "FROM", platform: "YouTube", handle: "@State536_Battles", desc: "SvS Capitol Clash Highlights & Hero Guides", link: "https://www.youtube.com/@2mnobita699" },
-            { alliance: "ATAK", platform: "Discord", handle: "FROM Recruitment Discord", desc: "Direct R4/R5 Interview & Migration Channel", link: "https://discord.com" },
-            { alliance: "Other", platform: "Tiktok", handle: "State 536 R5 Council", desc: "Emergency Shield & NAP Coordination Group", link: "#comunity" }
-        ];
+    <div class="chapter">
+      <div>
+        <p class="eyebrow">Your alliance. Your next chapter.</p>
+        <h3 style="margin-top:6px">There&apos;s a place <span>for you.</span></h3>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="chapterProfile">Alliance Profile <svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+        <a href="#social" class="btn btn-ghost">Social <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg></a>
+      </div>
+    </div>
 
-        function filterChannels(filter, btn) {
-            document.querySelectorAll('.channel-tab').forEach(b => {
-                b.classList.remove('tab-active');
-                b.classList.add('text-gray-400');
-            });
-            if(btn) {
-                btn.classList.add('tab-active');
-                btn.classList.remove('text-gray-400');
-            }
+    <form class="panel form-card" id="appForm" novalidate>
+      <header>
+        <h3>Your Next Chapter Starts Here</h3>
+        <p id="formSubtitle"></p>
+      </header>
+      <ol class="progress" id="progress" aria-label="Application progress">
+        <li data-step="1"><span class="n">1</span>Player</li><span class="line" aria-hidden="true"></span>
+        <li data-step="2"><span class="n">2</span>Migration</li><span class="line" aria-hidden="true"></span>
+        <li data-step="3"><span class="n">3</span>Review</li>
+      </ol>
 
-            const list = filter === 'ALL' ? channelsData : channelsData.filter(c => c.alliance === filter);
-            document.getElementById('channels-grid').innerHTML = list.map(c => `
-                <a href="${c.link}" target="_blank" class="block border border-[#ebe5d5]/15 bg-[#0a0c0e] p-5 hover:border-[#c8a96e] transition">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="px-2.5 py-1 bg-white/5 border border-white/10 text-xs font-medium">${c.platform}</span>
-                        <span class="text-gray-400 text-sm">↗</span>
-                    </div>
-                    <div class="text-[11px] font-display tracking-widest text-gray-400 mb-1">${c.alliance} · MEMBER-RUN CHANNEL</div>
-                    <div class="text-xl font-bold text-[#ebe5d5] mb-1">${c.handle}</div>
-                    <p class="text-xs text-gray-400">${c.desc}</p>
-                </a>
-            `).join('');
-        }
-        filterChannels('ALL');
+      <fieldset data-panel="1" style="border:0;padding:0;margin:0">
+        <legend class="sr-only">Step 1: Player</legend>
+        <div class="fields">
+          <div class="field">
+            <label for="uid">Player UID <span class="req">*</span></label>
+            <input id="uid" name="uid" inputmode="numeric" autocomplete="off" placeholder="e.g. 123456789" required data-rule="uid">
+            <p class="hint">Find it under your avatar profile. Used only to verify your account data.</p>
+            <p class="err">Enter your numeric UID (5–15 digits).</p>
+          </div>
+          <div class="field">
+            <label for="ign">In-game Name <span class="req">*</span></label>
+            <input id="ign" name="ign" autocomplete="nickname" placeholder="Your commander name" required>
+            <p class="err">Your in-game name is required.</p>
+          </div>
+          <div class="field">
+            <label for="intended">Intended Alliance (optional)</label>
+            <select id="intended" name="intended"></select>
+          </div>
+          <div class="field">
+            <label for="curState">Current State <span class="req">*</span></label>
+            <input id="curState" name="curState" inputmode="numeric" placeholder="e.g. 540" required data-rule="num">
+            <p class="err">Enter your current state number.</p>
+          </div>
+          <div class="field">
+            <label for="curAlliance">Current Alliance <span class="req">*</span></label>
+            <input id="curAlliance" name="curAlliance" placeholder="Alliance tag or name" required>
+            <p class="err">Your current alliance is required (write "None" if you have none).</p>
+          </div>
+          <div class="field">
+            <label for="shelter">Shelter Industrial Level <span class="req">*</span></label>
+            <select id="shelter" name="shelter" required></select>
+            <p class="err">Select your shelter level.</p>
+          </div>
+          <div class="field">
+            <label for="discord">Discord Username (optional)</label>
+            <input id="discord" name="discord" autocomplete="off" placeholder="e.g. commander.536">
+          </div>
+          <div class="field">
+            <label for="poc">Point of Contact (optional)</label>
+            <input id="poc" name="poc" placeholder="Who referred you or who you spoke with">
+          </div>
+        </div>
+        <div class="form-actions">
+          <p class="lock-note"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg> Your alliance selection stays with your application.</p>
+          <button type="button" class="btn btn-primary" data-next="2">Continue to Migration <svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+        </div>
+      </fieldset>
 
-        // 3. Off-Duty Gallery Slides
-        const slides = [
-            { cat: "Battle Moments", title: "Capitol Held for 4 Hours Straight!", author: "By State 536 Council", emoji: "⚔️", banner: "STATE 536 SVS VICTORY" },
-            { cat: "Memes & Laughs", title: "When you forget to shield 1 minute before KE", author: "By ShadowKazi", emoji: "😂", banner: "RIP TROOPS 2026" },
-            { cat: "Alliance Life", title: "Full Server Hive Formation Ready for War", author: "By FROM Leadership", emoji: "🛡️", banner: "UNITED WE STAND" }
-        ];
-        let currentSlide = 0;
+      <fieldset data-panel="2" hidden style="border:0;padding:0;margin:0">
+        <legend class="sr-only">Step 2: Migration</legend>
+        <div class="fields">
+          <div class="field">
+            <label for="power">Total Power <span class="req">*</span></label>
+            <input id="power" name="power" placeholder="e.g. 85.4M" required>
+            <p class="err">Enter your total power.</p>
+          </div>
+          <div class="field">
+            <label for="carcp">Main Car CP <span class="req">*</span></label>
+            <input id="carcp" name="carcp" placeholder="e.g. 18.2M" required>
+            <p class="err">Enter your main car combat power.</p>
+          </div>
+          <div class="field">
+            <label for="pass">Migration Pass <span class="req">*</span></label>
+            <select id="pass" name="pass" required>
+              <option value="">Select…</option>
+              <option>I have enough passes</option>
+              <option>I need some passes</option>
+              <option>Not sure yet</option>
+            </select>
+            <p class="err">Select your migration pass status.</p>
+          </div>
+          <div class="field">
+            <label for="passes">Passes Required (optional)</label>
+            <input id="passes" name="passes" inputmode="numeric" placeholder="e.g. 12">
+          </div>
+          <div class="field">
+            <label for="window">Preferred Migration Window (optional)</label>
+            <input id="window" name="window" placeholder="e.g. Next migration window">
+          </div>
+          <div class="field">
+            <label for="activity">Daily Activity (optional)</label>
+            <select id="activity" name="activity">
+              <option value="">Select…</option>
+              <option>1–2 hours</option>
+              <option>3–5 hours</option>
+              <option>5+ hours</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="notes">Anything else? (optional)</label>
+            <textarea id="notes" name="notes" placeholder="Languages, playstyle, what you are looking for…"></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-next="1"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg> Back</button>
+          <button type="button" class="btn btn-primary" data-next="3">Review Application <svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button>
+        </div>
+      </fieldset>
 
-        function renderSlide() {
-            const s = slides[currentSlide];
-            document.getElementById('gal-emoji').textContent = s.emoji;
-            document.getElementById('gal-banner').textContent = s.banner;
-            document.getElementById('gal-cat').textContent = s.cat;
-            document.getElementById('gal-title').textContent = s.title;
-            document.getElementById('gal-author').textContent = s.author;
-            document.getElementById('gal-counter').textContent = `${currentSlide + 1} / ${slides.length}`;
-        }
-        function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; renderSlide(); }
-        function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; renderSlide(); }
-        function filterGallery(cat, btn) {
-            document.querySelectorAll('.gal-tab').forEach(b => { b.classList.remove('tab-active'); b.classList.add('text-gray-400'); });
-            btn.classList.add('tab-active'); btn.classList.remove('text-gray-400');
-            const idx = slides.findIndex(s => s.cat === cat);
-            currentSlide = idx >= 0 ? idx : 0;
-            renderSlide();
-        }
+      <fieldset data-panel="3" hidden style="border:0;padding:0;margin:0">
+        <legend class="sr-only">Step 3: Review</legend>
+        <div class="summary"><dl id="summary"></dl></div>
+        <details style="margin-top:16px">
+          <summary style="cursor:pointer;color:var(--muted);font-size:.9rem">Preview Discord message</summary>
+          <pre class="preview-text" id="previewText"></pre>
+        </details>
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" data-next="2"><svg class="icon" aria-hidden="true"><use href="#i-left"/></svg> Edit</button>
+          <button type="button" class="btn btn-fire" id="copyApp"><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg> Copy Application for Discord</button>
+        </div>
+        <p class="tz-label" id="sendTo"></p>
+      </fieldset>
+    </form>
+  </div>
+</section>
+</main>
 
-        // 4. FAQ Accordion
-        function toggleFaq(btn) {
-            const content = btn.nextElementSibling;
-            content.classList.toggle('hidden');
-        }
-    </script>
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+        <div><strong>STATE 536</strong><span>Different Alliances. One State.</span></div>
+      </div>
+      <a href="#apply" class="footer-apply" id="footerApply">Apply to State 536 →</a>
+    </div>
+    <div class="footer-links" id="footerLinks"></div>
+    <p class="footer-legal">Fan-made community site. Not affiliated with or endorsed by the publisher of Dark War: Survival.</p>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="modal" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+  <div class="modal-box">
+    <button class="modal-close" data-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <div class="lb-inner">
+      <p class="eyebrow fire" id="lbTag"></p>
+      <h3 id="lbTitle" style="font-size:clamp(1.6rem,4vw,2.4rem);margin-top:6px"></h3>
+      <div class="podium" id="lbPodium"></div>
+      <h4 class="sub-title">Top 100 Rankings</h4>
+      <div class="table-wrap">
+        <table class="rank-table">
+          <thead><tr><th scope="col">Rank</th><th scope="col">Player</th><th scope="col">Faction / State</th><th scope="col">Power</th><th scope="col">Trend</th></tr></thead>
+          <tbody id="lbRows"></tbody>
+        </table>
+      </div>
+      <p class="lb-caption" id="lbCaption"></p>
+    </div>
+  </div>
+</div>
+
+<!-- Info modal -->
+<div class="modal" id="infoModal" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+  <div class="modal-box small">
+    <button class="modal-close" data-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+    <h3 id="infoTitle"></h3>
+    <div id="infoBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =====================================================================
+   CONFIG — edit everything here. No other code changes needed.
+   ===================================================================== */
+const CONFIG = {
+  stateName: "STATE 536",
+  serverTime: { label: "ST", utcOffset: -2 },      // Server time = UTC-2
+  heroSlides: ["img/hero-1.png", "img/hero-2.png", "img/hero-3.png"],
+  heroInterval: 6000,
+
+  alliances: [
+    {
+      id: "naya", name: "NAYA", color: "#E05A2B",
+      image: "img/naya.png",
+      district: "The Phoenix District",
+      title: "One Flame, One Family, One NAYA",
+      description: "Born from the ashes and built for the long run. NAYA brings together competitive players from around the world who value coordination, loyalty and showing up when it counts.",
+      tags: ["Competitive", "International", "Team-focused"],
+      motto: "Teamwork. Strength. Growth.",
+      about: "We run organised rallies, structured event participation and active mentoring for newer members. Whether you're pushing rankings or still building your shelter, there's a role for you in NAYA.",
+      r5: { name: "PhoenixRising", discord: "phoenix.r5" },
+      recruiter: { name: "EmberScout", discord: "ember.recruits" },
+      events: [
+        { name: "Core Embers", times: ["13:00"] },
+        { name: "Frankenstein", times: ["11:00", "16:00"] },
+        { name: "Black Gold", times: ["10:00", "19:00"] }
+      ]
+    },
+    {
+      id: "alliance2", name: "ALLIANCE 2", color: "#4C8BD6",
+      image: "img/alliance2.png",
+      district: "The Frost District",
+      title: "Hold the Line. Move as One.",
+      description: "A disciplined, defense-first alliance with steady growth, clear rally schedules and a calm, supportive community.",
+      tags: ["Strategic", "Defensive", "Steady growth"],
+      motto: "Discipline. Loyalty. Resolve.",
+      about: "Replace this text with Alliance 2's story, values and what they look for in new members.",
+      r5: { name: "R5 Name", discord: "alliance2.r5" },
+      recruiter: { name: "Recruiter Name", discord: "alliance2.recruit" },
+      events: [
+        { name: "Core Embers", times: ["14:00"] },
+        { name: "Frankenstein", times: ["12:00", "18:00"] },
+        { name: "Black Gold", times: ["11:00", "20:00"] }
+      ]
+    },
+    {
+      id: "alliance3", name: "ALLIANCE 3", color: "#D4AF37",
+      image: "img/alliance3.png",
+      district: "The Golden District",
+      title: "Pride of the Sands.",
+      description: "A relaxed but ambitious alliance for players who want to grow at their own pace without missing the big state moments.",
+      tags: ["Casual-friendly", "Social", "Growth"],
+      motto: "Grow. Share. Prevail.",
+      about: "Replace this text with Alliance 3's story, values and what they look for in new members.",
+      r5: { name: "R5 Name", discord: "alliance3.r5" },
+      recruiter: { name: "Recruiter Name", discord: "alliance3.recruit" },
+      events: [
+        { name: "Core Embers", times: ["15:00"] },
+        { name: "Frankenstein", times: ["10:00", "17:00"] },
+        { name: "Black Gold", times: ["09:00", "21:00"] }
+      ]
+    },
+    {
+      id: "other", name: "OTHER", color: "#8A8F96",
+      image: "img/hero-3.png",
+      district: "The Free Territories",
+      title: "Not Sure Yet? Start Here.",
+      description: "State 536 has more alliances and growing communities. Apply without choosing and our leaders will help match you with the right team.",
+      tags: ["Flexible", "Guided placement", "All playstyles"],
+      motto: "Find your fit.",
+      about: "Choose this option if you want the state leadership to recommend an alliance based on your playstyle, power and time zone.",
+      r5: { name: "State Council", discord: "state536.council" },
+      recruiter: { name: "State Recruiter", discord: "state536.recruit" },
+      events: [
+        { name: "Core Embers", times: ["13:00"] },
+        { name: "Frankenstein", times: ["11:00", "16:00"] },
+        { name: "Black Gold", times: ["10:00", "19:00"] }
+      ]
+    }
+  ],
+
+  // Illustrative 6x4 territory map. Use alliance ids, "capitol" or null.
+  territoryMap: [
+    ["naya","naya","alliance2","alliance2","alliance2",null],
+    ["naya","naya","capitol","capitol","alliance2","other"],
+    [null,"naya","capitol","capitol","alliance3","other"],
+    ["alliance3","alliance3","alliance3","alliance3","alliance3",null]
+  ],
+
+  socials: [
+    { alliance: "naya", platform: "TikTok", title: "Capitol war highlights", handle: "@naya.flame", url: "https://www.tiktok.com/", image: "img/naya.png" },
+    { alliance: "naya", platform: "YouTube", title: "Black Gold full guide", handle: "@NAYAOfficial", url: "https://www.youtube.com/", image: "img/fame-1.png" },
+    { alliance: "alliance2", platform: "YouTube", title: "Defense formations 101", handle: "@frostline", url: "https://www.youtube.com/", image: "img/alliance2.png" },
+    { alliance: "alliance3", platform: "TikTok", title: "Daily shelter routine", handle: "@goldensands", url: "https://www.tiktok.com/", image: "img/alliance3.png" },
+    { alliance: "other", platform: "YouTube", title: "State 536 migration Q&A", handle: "@state536", url: "https://www.youtube.com/", image: "img/hero-1.png" },
+    { alliance: "naya", platform: "TikTok", title: "Frankenstein rally clip", handle: "@ember.scout", url: "https://www.tiktok.com/", image: "img/hero-2.png" }
+  ],
+
+  hallOfFame: [
+    {
+      scope: "State Hall of Fame", tag: "Season Record", image: "img/fame-1.png",
+      title: "Capitol Secured — Season 3",
+      description: "Four alliances, one coordinated push. State 536 held the Capitol through the entire season.",
+      stats: [{ label: "Hold time", value: "14 Days" }, { label: "Alliances", value: "4" }],
+      caption: "Season 3 final standings — State 536 finished #1 in the warzone.",
+      rankings: [
+        { player: "PhoenixRising", faction: "NAYA / 536", power: "182.4M", carCP: "41.2M", trend: 2 },
+        { player: "FrostWarden", faction: "A2 / 536", power: "176.9M", carCP: "39.8M", trend: 0 },
+        { player: "SandLion", faction: "A3 / 536", power: "171.3M", carCP: "38.1M", trend: 1 },
+        { player: "EmberScout", faction: "NAYA / 536", power: "165.0M", trend: -1 },
+        { player: "IronVeil", faction: "A2 / 536", power: "158.7M", trend: 3 },
+        { player: "Ashborn", faction: "NAYA / 536", power: "151.2M", trend: 0 },
+        { player: "GoldTalon", faction: "A3 / 536", power: "149.9M", trend: -2 },
+        { player: "NightRally", faction: "A2 / 536", power: "143.5M", trend: 1 }
+      ]
+    },
+    {
+      scope: "NAYA Hall of Fame", tag: "Alliance Milestone", image: "img/naya.png",
+      title: "NAYA Hits #1 Alliance Power",
+      description: "From mid-table to the top of the state in a single season — powered by daily rallies and zero missed events.",
+      stats: [{ label: "Alliance power", value: "9.8B" }, { label: "Members", value: "100" }],
+      caption: "Alliance power leaderboard — NAYA claims the top spot.",
+      rankings: [
+        { player: "PhoenixRising", faction: "NAYA / 536", power: "182.4M", carCP: "41.2M", trend: 1 },
+        { player: "EmberScout", faction: "NAYA / 536", power: "165.0M", carCP: "37.5M", trend: 2 },
+        { player: "Ashborn", faction: "NAYA / 536", power: "151.2M", carCP: "35.0M", trend: 0 },
+        { player: "Cinder", faction: "NAYA / 536", power: "140.8M", trend: 4 },
+        { player: "Kindle", faction: "NAYA / 536", power: "133.1M", trend: -1 },
+        { player: "Blaze77", faction: "NAYA / 536", power: "128.6M", trend: 0 }
+      ]
+    },
+    {
+      scope: "State Hall of Fame", tag: "Event Victory", image: "img/alliance3.png",
+      title: "Black Gold Clean Sweep",
+      description: "Every refinery held, every convoy delivered. A full-state effort across all three alliances.",
+      stats: [{ label: "Refineries", value: "12 / 12" }, { label: "Convoys", value: "100%" }],
+      caption: "Black Gold event results — perfect score for State 536.",
+      rankings: [
+        { player: "SandLion", faction: "A3 / 536", power: "171.3M", carCP: "38.1M", trend: 3 },
+        { player: "PhoenixRising", faction: "NAYA / 536", power: "182.4M", carCP: "41.2M", trend: 0 },
+        { player: "FrostWarden", faction: "A2 / 536", power: "176.9M", carCP: "39.8M", trend: -1 },
+        { player: "GoldTalon", faction: "A3 / 536", power: "149.9M", trend: 2 },
+        { player: "IronVeil", faction: "A2 / 536", power: "158.7M", trend: 0 }
+      ]
+    }
+  ],
+
+  shelterLevels: Array.from({ length: 30 }, (_, i) => String(30 - i)),
+
+  legal: {
+    "Terms of Use": "This is an unofficial, fan-run community website for State 536 in Dark War: Survival. Content is provided as-is for community coordination only.",
+    "Privacy": "This site has no backend and stores no personal data. Application details you enter stay in your browser and are only copied to your clipboard when you choose to.",
+    "Cookies": "This site does not set tracking or advertising cookies. Fonts are loaded from Google Fonts.",
+    "Disclaimer": "Dark War: Survival and related names are trademarks of their respective owners. This site is not affiliated with or endorsed by the game publisher.",
+    "Contact & Privacy Requests": "For questions or removal requests, contact the State Council on Discord: state536.council"
+  }
+};
+
+/* =====================================================================
+   APP
+   ===================================================================== */
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  const icon = id => `<svg class="icon" aria-hidden="true"><use href="#i-${id}"/></svg>`;
+  const byId = id => CONFIG.alliances.find(a => a.id === id);
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const state = { view: "overview", current: null, selected: null, tz: "server", step: 1, fameIdx: 0, socialFilter: "all" };
+
+  /* ---------- Toast & clipboard ---------- */
+  let toastTimer;
+  function toast(msg) {
+    const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
+  }
+  async function copyText(text, okMsg) {
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta); ta.select();
+      let ok = false; try { ok = document.execCommand("copy"); } catch {}
+      ta.remove();
+      if (!ok) { toast("Copy blocked by browser — please copy manually."); return false; }
+    }
+    toast(okMsg); return true;
+  }
+
+  /* ---------- Header nav ---------- */
+  const menuBtn = $("#menuBtn"), nav = $("#siteNav");
+  menuBtn.addEventListener("click", () => {
+    const open = nav.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", open);
+  });
+  $$("#siteNav a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); }));
+  $("#navEvents").addEventListener("click", e => {
+    e.preventDefault();
+    openProfile(state.current || state.selected || CONFIG.alliances[0].id);
+    setTimeout(() => $("#events").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }), 30);
+  });
+  const navMap = { alliances: "#alliances", unity: "#unity", social: "#social", fame: "#social", apply: "#apply" };
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const target = navMap[en.target.id];
+      $$("#siteNav a").forEach(a => a.classList.toggle("active", a.getAttribute("href") === target));
+    });
+  }, { rootMargin: "-45% 0px -50% 0px" });
+  ["alliances","unity","social","fame","apply"].forEach(id => obs.observe(document.getElementById(id)));
+
+  /* ---------- Hero slideshow ---------- */
+  const slidesEl = $("#heroSlides"), dotsEl = $("#heroDots"), pauseBtn = $("#pauseBtn");
+  let slideIdx = 0, slideTimer = null, paused = reduceMotion;
+  CONFIG.heroSlides.forEach((src, i) => {
+    const d = document.createElement("div");
+    d.className = "hero-slide" + (i === 0 ? " active" : "");
+    d.style.backgroundImage = `url('${src}')`;
+    slidesEl.appendChild(d);
+    const b = document.createElement("button");
+    b.setAttribute("aria-label", `Show background ${i + 1}`);
+    if (i === 0) b.classList.add("active");
+    b.addEventListener("click", () => { goSlide(i); restartSlides(); });
+    dotsEl.appendChild(b);
+  });
+  function goSlide(i) {
+    slideIdx = (i + CONFIG.heroSlides.length) % CONFIG.heroSlides.length;
+    $$(".hero-slide", slidesEl).forEach((s, k) => s.classList.toggle("active", k === slideIdx));
+    $$("button", dotsEl).forEach((s, k) => s.classList.toggle("active", k === slideIdx));
+  }
+  function restartSlides() {
+    clearInterval(slideTimer);
+    if (!paused) slideTimer = setInterval(() => goSlide(slideIdx + 1), CONFIG.heroInterval);
+  }
+  function renderPause() {
+    pauseBtn.setAttribute("aria-pressed", paused);
+    pauseBtn.setAttribute("aria-label", paused ? "Play background slideshow" : "Pause background slideshow");
+    pauseBtn.innerHTML = icon(paused ? "play" : "pause");
+  }
+  pauseBtn.addEventListener("click", () => { paused = !paused; renderPause(); restartSlides(); });
+  renderPause(); restartSlides();
+
+  /* ---------- Alliance explorer ---------- */
+  const tabsEl = $("#allianceTabs");
+  const tabDefs = [{ id: "overview", label: "All / Overview" }, ...CONFIG.alliances.map(a => ({ id: a.id, label: a.name }))];
+  tabsEl.innerHTML = tabDefs.map(t => `<button class="tab" role="tab" data-tab="${t.id}" aria-selected="false">${esc(t.label)}</button>`).join("");
+  tabsEl.addEventListener("click", e => {
+    const b = e.target.closest("[data-tab]"); if (!b) return;
+    b.dataset.tab === "overview" ? showOverview() : showAlliance(b.dataset.tab);
+  });
+
+  $("#mapLegend").innerHTML = CONFIG.alliances.filter(a => a.id !== "other" || CONFIG.territoryMap.flat().includes("other"))
+    .map(a => `<span><i style="background:${a.color}"></i>${esc(a.name)}</span>`).join("") + `<span><i style="background:#8a7428"></i>Capitol</span>`;
+
+  const hexToRgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16 & 255},${n >> 8 & 255},${n & 255},${a})`; };
+  let capitolLabeled = false;
+  $("#mapGrid").innerHTML = CONFIG.territoryMap.flat().map(cell => {
+    if (cell === "capitol") { const lbl = capitolLabeled ? "" : "CAPITOL"; capitolLabeled = true; return `<div class="zone capitol" aria-hidden="${lbl ? "false" : "true"}">${lbl}</div>`; }
+    const a = byId(cell);
+    if (!a) return `<div class="zone neutral" aria-hidden="true"></div>`;
+    return `<button class="zone" data-alliance="${a.id}" style="--zone:${hexToRgba(a.color, .35)}" aria-label="${esc(a.name)} territory">${esc(a.name.replace("ALLIANCE ", "A"))}</button>`;
+  }).join("");
+  $("#mapGrid").addEventListener("click", e => { const z = e.target.closest("[data-alliance]"); if (z) showAlliance(z.dataset.alliance); });
+
+  $("#allianceList").innerHTML = CONFIG.alliances.map(a => `
+    <button class="alliance-mini" data-alliance="${a.id}">
+      <img src="${esc(a.image)}" alt="" loading="lazy">
+      <div><h4 style="color:${a.color}">${esc(a.name)}</h4><p>${esc(a.district)} &bull; ${esc(a.tags.join(" • "))}</p></div>
+      <span class="go">${icon("right")}</span>
+    </button>`).join("");
+  $("#allianceList").addEventListener("click", e => { const b = e.target.closest("[data-alliance]"); if (b) showAlliance(b.dataset.alliance); });
+
+  function setTabs(id) { $$(".tab", tabsEl).forEach(t => t.setAttribute("aria-selected", t.dataset.tab === id)); }
+  function showOverview() {
+    state.view = "overview"; state.current = null;
+    $("#explorerOverview").hidden = false; $("#explorerShowcase").hidden = true; $("#allianceProfile").hidden = true;
+    setTabs("overview");
+  }
+  function showAlliance(id) {
+    const a = byId(id); if (!a) return;
+    state.view = "alliance"; state.current = id;
+    $("#explorerOverview").hidden = true; $("#explorerShowcase").hidden = false;
+    $("#scImg").src = a.image; $("#scImg").alt = `${a.name} alliance banner artwork`;
+    $("#scSub").textContent = `${a.district} • ${CONFIG.stateName}`;
+    $("#scTitle").textContent = a.title;
+    $("#scDesc").textContent = a.description;
+    $("#scTags").innerHTML = `<span class="tag">${esc(a.tags.join(" • "))}</span>`;
+    $("#scChoose").innerHTML = `Choose ${esc(a.name)} ${icon("right")}`;
+    $("#scCapName").textContent = a.name;
+    setTabs(id);
+    if (!$("#allianceProfile").hidden) renderProfile(id);
+  }
+  $("#backBtn").addEventListener("click", showOverview);
+  $("#scChoose").addEventListener("click", () => { setSelected(state.current); goApply(); });
+  $("#scProfile").addEventListener("click", () => openProfile(state.current, true));
+  $("#scNext").addEventListener("click", () => {
+    const i = CONFIG.alliances.findIndex(a => a.id === state.current);
+    showAlliance(CONFIG.alliances[(i + 1) % CONFIG.alliances.length].id);
+  });
+
+  /* ---------- Profile ---------- */
+  function openProfile(id, scroll) {
+    showAlliance(id);
+    renderProfile(id);
+    $("#allianceProfile").hidden = false;
+    if (scroll) $("#allianceProfile").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  }
+  function renderProfile(id) {
+    const a = byId(id);
+    $("#pfTitle").innerHTML = `Rise with <em>${esc(a.name)}</em>.`;
+    $("#pfAboutTitle").textContent = `About ${a.name}`;
+    $("#pfMotto").textContent = a.motto;
+    $("#pfDesc").textContent = a.about;
+    $("#pfApply").innerHTML = `Apply to ${esc(a.name)} ${icon("right")}`;
+    $("#pfContacts").innerHTML = [["R5 • Alliance Leader", a.r5], ["Recruiter", a.recruiter]].map(([role, c]) => `
+      <div class="contact">
+        <p class="role">${esc(role)}</p>
+        <p class="name">${esc(c.name)}</p>
+        <div class="copy-line"><code>Discord: ${esc(c.discord)}</code>
+          <button class="icon-btn" data-copy="${esc(c.discord)}" aria-label="Copy ${esc(c.name)} Discord handle">${icon("copy")}</button>
+        </div>
+      </div>`).join("");
+    renderEvents();
+  }
+  $("#pfContacts").addEventListener("click", e => { const b = e.target.closest("[data-copy]"); if (b) copyText(b.dataset.copy, `Copied ${b.dataset.copy} to clipboard`); });
+  $("#pfClose").addEventListener("click", () => { $("#allianceProfile").hidden = true; $("#alliances").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" }); });
+  $("#pfApply").addEventListener("click", () => { setSelected(state.current); goApply(); });
+
+  const off = CONFIG.serverTime.utcOffset;
+  $("#tzServer").textContent = `Server time — ${CONFIG.serverTime.label} (UTC${off >= 0 ? "+" : "−"}${Math.abs(off)})`;
+  $$(".tz-toggle button").forEach(b => b.addEventListener("click", () => {
+    state.tz = b.dataset.tz;
+    $$(".tz-toggle button").forEach(x => x.setAttribute("aria-pressed", x === b));
+    renderEvents();
+  }));
+  function toLocal(hhmm) {
+    const [h, m] = hhmm.split(":").map(Number);
+    const now = new Date();
+    const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), h - off, m));
+    return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: false });
+  }
+  function renderEvents() {
+    const a = byId(state.current); if (!a) return;
+    $("#pfEvents").innerHTML = a.events.map(ev => `
+      <div class="event"><h4>${esc(ev.name)}</h4>
+        <div class="times">${ev.times.map(t => `<span class="time-chip">${esc(state.tz === "server" ? t : toLocal(t))}</span>`).join("")}</div>
+      </div>`).join("");
+    let zone = ""; try { zone = Intl.DateTimeFormat().resolvedOptions().timeZone; } catch {}
+    $("#tzLabel").textContent = state.tz === "server"
+      ? `Times shown in server time (${CONFIG.serverTime.label}, UTC${off >= 0 ? "+" : "−"}${Math.abs(off)}).`
+      : `Times converted to your local time${zone ? ` (${zone})` : ""}.`;
+  }
+
+  /* ---------- Social ---------- */
+  const socialTabs = $("#socialTabs");
+  socialTabs.innerHTML = [{ id: "all", label: "All" }, ...CONFIG.alliances.map(a => ({ id: a.id, label: a.name }))]
+    .map(t => `<button class="tab" role="tab" data-filter="${t.id}" aria-selected="${t.id === "all"}">${esc(t.label)}</button>`).join("");
+  socialTabs.addEventListener("click", e => {
+    const b = e.target.closest("[data-filter]"); if (!b) return;
+    state.socialFilter = b.dataset.filter;
+    $$(".tab", socialTabs).forEach(t => t.setAttribute("aria-selected", t === b));
+    renderSocial();
+  });
+  const platformColor = { TikTok: "#25F4EE", YouTube: "#FF0033" };
+  function renderSocial() {
+    const items = CONFIG.socials.filter(s => state.socialFilter === "all" || s.alliance === state.socialFilter);
+    $("#socialGrid").innerHTML = items.length ? items.map(s => {
+      const a = byId(s.alliance);
+      return `<a class="social-card" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(s.title)} by ${esc(s.handle)} on ${esc(s.platform)} (opens in new tab)">
+        <div class="social-thumb">
+          <img src="${esc(s.image)}" alt="" loading="lazy">
+          <span class="platform"><i style="background:${platformColor[s.platform] || "#fff"}"></i>${esc(s.platform)}</span>
+          <span class="ext">${icon("ext")}</span>
+          <span class="s-title">${esc(s.title)}</span>
+        </div>
+        <div class="social-meta"><p class="a-tag" style="color:${a ? a.color : "var(--fire)"}">${esc(a ? a.name : "STATE")} &bull; Member-run channel</p><p class="handle">${esc(s.handle)}</p></div>
+      </a>`;
+    }).join("") : `<p class="empty">No channels listed yet for this alliance. Run one? Tell your recruiter!</p>`;
+  }
+  renderSocial();
+
+  /* ---------- Hall of Fame ---------- */
+  function renderFame() {
+    const list = CONFIG.hallOfFame, f = list[state.fameIdx];
+    $("#fameScope").textContent = f.scope;
+    $("#fameImg").src = f.image; $("#fameImg").alt = f.title;
+    $("#fameTag").textContent = f.tag;
+    $("#fameTitle").textContent = f.title;
+    $("#fameDesc").textContent = f.description;
+    $("#fameStats").innerHTML = (f.stats || []).map(s => `<div><strong>${esc(s.value)}</strong>${esc(s.label)}</div>`).join("");
+    $("#fameCount").textContent = `${state.fameIdx + 1} / ${list.length}`;
+  }
+  $("#famePrev").addEventListener("click", () => { state.fameIdx = (state.fameIdx - 1 + CONFIG.hallOfFame.length) % CONFIG.hallOfFame.length; renderFame(); });
+  $("#fameNext").addEventListener("click", () => { state.fameIdx = (state.fameIdx + 1) % CONFIG.hallOfFame.length; renderFame(); });
+  renderFame();
+
+  const trendHtml = t => t > 0 ? `<span class="trend-up">▲ ${t}</span>` : t < 0 ? `<span class="trend-down">▼ ${Math.abs(t)}</span>` : `<span class="trend-flat">—</span>`;
+  $("#enlargeBtn").addEventListener("click", () => {
+    const f = CONFIG.hallOfFame[state.fameIdx], r = f.rankings;
+    $("#lbTag").textContent = `${f.scope} • ${f.tag}`;
+    $("#lbTitle").textContent = f.title;
+    const pod = (p, n) => p ? `<div class="pod p${n}">
+        ${n === 1 ? `<svg class="icon crown" aria-hidden="true"><use href="#i-crown"/></svg>` : ""}
+        <div class="rank">#${n}</div><div class="pname">${esc(p.player)}</div><div class="pmeta">${esc(p.faction)}</div>
+        <div class="cp"><small>Main Car CP</small>${esc(p.carCP || p.power)}</div></div>` : `<div></div>`;
+    $("#lbPodium").innerHTML = pod(r[1], 2) + pod(r[0], 1) + pod(r[2], 3);
+    $("#lbRows").innerHTML = r.map((p, i) => `<tr class="${i < 3 ? "hl" : ""}"><td class="r">${i + 1}</td><td>${esc(p.player)}</td><td>${esc(p.faction)}</td><td>${esc(p.power)}</td><td>${trendHtml(p.trend)}</td></tr>`).join("");
+    $("#lbCaption").textContent = f.caption;
+    openModal("lightbox");
+  });
+
+  /* ---------- Modals ---------- */
+  let lastFocus = null;
+  function openModal(id) {
+    lastFocus = document.activeElement;
+    const m = document.getElementById(id); m.classList.add("open");
+    document.body.style.overflow = "hidden";
+    $("[data-close]", m).focus();
+  }
+  function closeModal(m) {
+    m.classList.remove("open");
+    if (!$(".modal.open")) document.body.style.overflow = "";
+    if (lastFocus) lastFocus.focus();
+  }
+  $$(".modal").forEach(m => {
+    m.addEventListener("click", e => { if (e.target === m || e.target.closest("[data-close]")) closeModal(m); });
+    m.addEventListener("keydown", e => {
+      if (e.key !== "Tab") return;
+      const f = $$("button, a[href], input, select, textarea", m).filter(x => !x.disabled && x.offsetParent !== null);
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    });
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Escape") return;
+    const open = $(".modal.open");
+    if (open) return closeModal(open);
+    if (state.view === "alliance") showOverview();
+  });
+
+  /* ---------- Footer ---------- */
+  const links = [...Object.keys(CONFIG.legal), "Cookie settings"];
+  $("#footerLinks").innerHTML = links.map(l => `<button type="button" data-legal="${esc(l)}">${esc(l)}</button>`).join("");
+  $("#footerLinks").addEventListener("click", e => {
+    const b = e.target.closest("[data-legal]"); if (!b) return;
+    const key = b.dataset.legal;
+    if (key === "Cookie settings") {
+      $("#infoTitle").textContent = "Cookie Settings";
+      $("#infoBody").innerHTML = `<p>This site uses no tracking, analytics or advertising cookies. Only essential browser features are used.</p>
+        <button class="btn btn-primary btn-sm" id="cookieOk">${icon("check")} Got it</button>`;
+      openModal("infoModal");
+      $("#cookieOk").addEventListener("click", () => { closeModal($("#infoModal")); toast("Cookie preferences saved — essential only."); });
+      return;
+    }
+    $("#infoTitle").textContent = key;
+    $("#infoBody").innerHTML = `<p>${esc(CONFIG.legal[key])}</p>`;
+    openModal("infoModal");
+  });
+
+  /* ---------- Application ---------- */
+  const pillsEl = $("#applyPills"), intendedSel = $("#intended");
+  pillsEl.innerHTML = CONFIG.alliances.map(a => `<button type="button" class="pill" data-pick="${a.id}" aria-pressed="false">${esc(a.id === "other" ? "Other" : a.name)}</button>`).join("");
+  pillsEl.addEventListener("click", e => { const b = e.target.closest("[data-pick]"); if (b) setSelected(b.dataset.pick); });
+  intendedSel.innerHTML = `<option value="">No preference</option>` + CONFIG.alliances.map(a => `<option value="${a.id}">${esc(a.id === "other" ? "Other / Help me choose" : a.name)}</option>`).join("");
+  intendedSel.addEventListener("change", () => setSelected(intendedSel.value || null));
+  $("#shelter").innerHTML = `<option value="">Select level…</option>` + CONFIG.shelterLevels.map(l => `<option>${esc(l)}</option>`).join("");
+
+  function setSelected(id) {
+    state.selected = id || null;
+    const a = byId(state.selected);
+    $$(".pill", pillsEl).forEach(p => p.setAttribute("aria-pressed", p.dataset.pick === state.selected));
+    intendedSel.value = state.selected || "";
+    $("#statusLine").innerHTML = a ? `<strong>${esc(a.name)}</strong> selected. Your application is ready below.` : "Pick an alliance above — or apply without one and we'll help you choose.";
+    $("#formSubtitle").innerHTML = `Applying to State 536 — <strong>${esc(a ? a.name : "Any alliance")}</strong>`;
+    $("#footerApply").textContent = `Apply to ${a ? a.name : "State 536"} →`;
+    if (state.step === 3) renderSummary();
+  }
+  function goApply() { $("#apply").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); }
+  $("#footerApply").addEventListener("click", e => { e.preventDefault(); goApply(); });
+  $("#chapterProfile").addEventListener("click", () => openProfile(state.selected || CONFIG.alliances[0].id, true));
+
+  const form = $("#appForm");
+  function validateField(input) {
+    const f = input.closest(".field"), v = input.value.trim();
+    let ok = !input.required || v !== "";
+    if (ok && v && input.dataset.rule === "uid") ok = /^\d{5,15}$/.test(v);
+    if (ok && v && input.dataset.rule === "num") ok = /^\d{1,5}$/.test(v);
+    f.classList.toggle("invalid", !ok);
+    input.setAttribute("aria-invalid", !ok);
+    return ok;
+  }
+  $$("input, select", form).forEach(i => i.addEventListener("input", () => { if (i.closest(".field")?.classList.contains("invalid")) validateField(i); }));
+  function validateStep(n) {
+    const inputs = $$(`[data-panel="${n}"] [required]`, form);
+    const bad = inputs.filter(i => !validateField(i));
+    if (bad.length) { bad[0].focus(); toast("Please complete the highlighted fields."); }
+    return !bad.length;
+  }
+  function goStep(n) {
+    if (n > state.step) { for (let s = state.step; s < n; s++) if (!validateStep(s)) return; }
+    state.step = n;
+    $$("[data-panel]", form).forEach(p => p.hidden = Number(p.dataset.panel) !== n);
+    $$("#progress li").forEach(li => {
+      const s = Number(li.dataset.step);
+      li.classList.toggle("current", s === n); li.classList.toggle("done", s < n);
+      if (s === n) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current");
+    });
+    if (n === 3) renderSummary();
+    form.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  }
+  form.addEventListener("click", e => { const b = e.target.closest("[data-next]"); if (b) goStep(Number(b.dataset.next)); });
+  form.addEventListener("submit", e => e.preventDefault());
+  form.addEventListener("keydown", e => {
+    if (e.key === "Enter" && e.target.tagName === "INPUT") {
+      if (e.isComposing || e.keyCode === 229) return;
+      e.preventDefault();
+      if (state.step < 3) goStep(state.step + 1);
+    }
+  });
+
+  function collect() {
+    const v = id => document.getElementById(id).value.trim();
+    const a = byId(state.selected);
+    return [
+      ["Alliance", a ? a.name : "No preference"],
+      ["Player UID", v("uid")], ["In-game Name", v("ign")],
+      ["Current State", v("curState")], ["Current Alliance", v("curAlliance")],
+      ["Shelter Level", v("shelter")], ["Discord", v("discord")], ["Point of Contact", v("poc")],
+      ["Total Power", v("power")], ["Main Car CP", v("carcp")], ["Migration Pass", v("pass")],
+      ["Passes Required", v("passes")], ["Migration Window", v("window")], ["Daily Activity", v("activity")],
+      ["Notes", v("notes")]
+    ];
+  }
+  function buildText() {
+    const rows = collect().filter(([, val]) => val);
+    return `**${CONFIG.stateName} — MIGRATION APPLICATION**\n` + rows.map(([k, val]) => `**${k}:** ${val}`).join("\n");
+  }
+  function renderSummary() {
+    $("#summary").innerHTML = collect().map(([k, val]) => `<div class="row"><dt>${esc(k)}</dt><dd>${val ? esc(val) : '<span style="color:var(--dim)">—</span>'}</dd></div>`).join("");
+    $("#previewText").textContent = buildText();
+    const a = byId(state.selected) || byId("other");
+    $("#sendTo").textContent = `Paste it in a Discord DM to ${a.recruiter.name} (${a.recruiter.discord}) or ${a.r5.name} (${a.r5.discord}).`;
+  }
+  $("#copyApp").addEventListener("click", async () => {
+    const ok = await copyText(buildText(), "Application copied — paste it to your recruiter on Discord.");
+    if (ok) { const b = $("#copyApp"); b.innerHTML = `${icon("check")} Copied!`; setTimeout(() => b.innerHTML = `${icon("copy")} Copy Application for Discord`, 2400); }
+  });
+
+  /* ---------- Init ---------- */
+  showOverview();
+  setSelected(null);
+  goStep.call(null, 1);
+  window.scrollTo(0, 0);
+})();
+</script>
 </body>
 </html>
